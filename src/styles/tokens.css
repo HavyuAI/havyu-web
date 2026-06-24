@@ -1,0 +1,80 @@
+/* ✅ [FEATURE]: Havyu AI design tokens — web mirror of DESIGN_SYSTEM.md.
+   Single source of truth for the marketing site's palette + type.
+   Web and app must read as ONE brand. #7C4DFF is AI-ONLY.
+   Import once from the base layout (`import '../styles/tokens.css'`). */
+
+@import "tailwindcss";
+
+/* Self-hosted League Spartan — no external font request (faster + privacy-clean). */
+@import "@fontsource/league-spartan/400.css";
+@import "@fontsource/league-spartan/500.css";
+@import "@fontsource/league-spartan/700.css";
+@import "@fontsource/league-spartan/900.css";
+
+/* ── Design tokens (Tailwind v4 @theme → generates utilities) ── */
+@theme {
+  /* — Latte & Espresso (Weightlifting pillar / warm accent) — */
+  --color-chestnut: #6d4c41;
+  --color-iron: #c19a6b;                            /* app Lift-tab caramel (Pillar 1 fill) */
+  --color-latte: #d7ccc8;
+  --color-espresso: #3e2723;
+  --color-espresso-faded: rgba(109, 76, 65, 0.6);
+
+  /* — Leaf & Growth (DOMINANT brand green) — */
+  --color-forest: #2e7d32;                         /* primary green / brand */
+  --color-forest-deep: #14401f;                    /* hero base, dark band, footer */
+  --color-forest-bright: #43a047;                  /* gradient highlight */
+  --color-success: #4caf50;                        /* streaks / wins */
+
+  /* — AI (RESERVED — never use for generic UI) — */
+  --color-ai: #7c4dff;                             /* AI purple — on LIGHT surfaces */
+  --color-ai-bright: #a78bfa;                      /* AI purple — on DARK/green surfaces (legible) */
+
+  /* — Surfaces — */
+  --color-surface: #ffffff;
+  --color-surface-warm: #f3f7f2;                   /* faintly green-tinted off-white page bg */
+  --color-border: rgba(109, 76, 65, 0.12);
+
+  /* — Type — */
+  --font-display: "League Spartan", system-ui, sans-serif;
+  --font-body: "League Spartan", system-ui, sans-serif;
+
+  /* — Elevation (soft, diffused — never harsh/tight) — */
+  --shadow-card: 0 4px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Base layer ──
+   IMPORTANT: these MUST live inside @layer base, otherwise these unlayered
+   element rules outrank Tailwind's layered utilities and force every heading
+   to espresso — which made `text-white` headings render brown on the green band. */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    font-family: var(--font-body);
+    color: var(--color-espresso);
+    background: var(--color-surface-warm);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Default heading colour (overridable by text-* utilities, e.g. text-white). */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-espresso);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+}

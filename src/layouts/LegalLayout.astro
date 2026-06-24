@@ -1,0 +1,85 @@
+---
+// ✅ [FEATURE]: Legal layout — wraps Markdown legal pages (privacy, terms) in Base
+// with readable prose styling. Goes at: src/layouts/LegalLayout.astro
+// Markdown pages in src/pages/*.md set `layout: ../layouts/LegalLayout.astro`.
+import Base from './Base.astro';
+
+const { frontmatter } = Astro.props;
+const { title, description } = frontmatter;
+---
+
+<Base title={title} description={description}>
+  <article class="legal mx-auto max-w-3xl px-6 py-14 md:py-20">
+    <a href="/" class="text-sm font-bold text-forest transition hover:underline">
+      ← Back to Havyu AI
+    </a>
+    <slot />
+  </article>
+</Base>
+
+<style>
+  /* Markdown-rendered children aren't scoped, so target them via :global()
+     under the scoped .legal wrapper to keep styles contained. */
+  .legal :global(h1) {
+    font-size: 2rem;
+    line-height: 1.1;
+    font-weight: 900;
+    color: var(--color-espresso);
+    margin-top: 1.5rem;
+  }
+  .legal :global(h2) {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--color-espresso);
+    margin-top: 2.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .legal :global(h3) {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-espresso);
+    margin-top: 1.5rem;
+  }
+  .legal :global(p) {
+    color: color-mix(in srgb, var(--color-espresso) 80%, transparent);
+    line-height: 1.7;
+    margin-top: 1rem;
+  }
+  .legal :global(ul) {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin-top: 1rem;
+  }
+  .legal :global(li) {
+    color: color-mix(in srgb, var(--color-espresso) 80%, transparent);
+    line-height: 1.7;
+    margin-top: 0.4rem;
+  }
+  .legal :global(strong) {
+    color: var(--color-espresso);
+    font-weight: 700;
+  }
+  .legal :global(a) {
+    color: var(--color-forest);
+    text-decoration: underline;
+  }
+  .legal :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+  }
+  .legal :global(th),
+  .legal :global(td) {
+    border: 1px solid var(--color-border);
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+    color: color-mix(in srgb, var(--color-espresso) 80%, transparent);
+  }
+  .legal :global(th) {
+    background: var(--color-surface-warm);
+    color: var(--color-espresso);
+    font-weight: 700;
+  }
+</style>

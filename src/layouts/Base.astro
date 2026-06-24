@@ -1,0 +1,87 @@
+---
+// ✅ [FEATURE]: Base layout — the SEO/meta foundation wrapped around every page.
+// Goes at: src/layouts/Base.astro
+import '../styles/tokens.css'; // ✅ [FEATURE]: tokens + Tailwind + self-hosted League Spartan
+
+// ✅ [PERF]: preload the above-the-fold font weights (hero headline 900 + body 400)
+// for faster LCP. Vite resolves these to hashed URLs at build.
+// Verify paths: ls node_modules/@fontsource/league-spartan/files/ | grep 'latin-900-normal'
+import lsBlack from '@fontsource/league-spartan/files/league-spartan-latin-900-normal.woff2';
+import lsRegular from '@fontsource/league-spartan/files/league-spartan-latin-400-normal.woff2';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path only, e.g. "/privacy". Defaults to the current page path. */
+  canonicalPath?: string;
+  /** Share image, absolute path under /public (e.g. "/og-image.png"). */
+  ogImage?: string;
+  /** Alt text for the share image. */
+  ogImageAlt?: string;
+  /** JSON-LD objects, injected as <script type="application/ld+json">. */
+  schema?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  ogImage = '/og-image.png',
+  ogImageAlt = 'Havyu AI — the AI coach for lifting and lifestyle',
+  schema = [],
+} = Astro.props;
+
+// Astro.site comes from astro.config.mjs ('https://havyu.org').
+const site = Astro.site ?? new URL('https://havyu.org');
+const canonical = new URL(canonicalPath, site).href;
+const ogImageUrl = new URL(ogImage, site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#14401f" />
+
+    {/* ✅ [PERF]: preload critical font weights (LCP — hero headline + body) */}
+    <link rel="preload" href={lsBlack} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={lsRegular} as="font" type="font/woff2" crossorigin />
+    {/* TODO: add a COLORED icon (green-bg square works on any tab) at public/favicon.png */}
+    <link rel="icon" href="/favicon.png" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {/* ✅ [FEATURE]: canonical — mandatory with two domains in play */}
+    <link rel="canonical" href={canonical} />
+
+    {/* ✅ [FEATURE]: Open Graph (rich unfurls in social + AI link previews) */}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Havyu AI" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+
+    {/* ✅ [FEATURE]: Twitter card */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    {/* ✅ [FEATURE]: JSON-LD structured data (SEO + AEO) */}
+    {schema.map((obj) => (
+      <script type="application/ld+json" set:html={JSON.stringify(obj)} />
+    ))}
+
+    {/* Per-page head extras */}
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

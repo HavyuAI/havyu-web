@@ -1,0 +1,242 @@
+---
+// ✅ [FEATURE]: "See it in action" — app screenshots in a horizontal swipe carousel.
+// Goes at: src/components/Showcase.astro
+// Assets: copy the four .webp files into  public/screenshots/
+// Carousel = native CSS scroll-snap (touch swipe) + arrow buttons (desktop). No deps.
+const shots = [
+  {
+    src: '/screenshots/screenshot-coach.webp',
+    w: 600,
+    h: 1269,
+    kicker: 'AI Coach',
+    tone: 'ai',
+    caption: 'Weekly read-outs and pattern insights, in plain language.',
+  },
+  {
+    src: '/screenshots/screenshot-genie.webp',
+    w: 600,
+    h: 1269,
+    kicker: 'Tap-to-summon coach',
+    tone: 'ai',
+    caption: 'Your coach, one tap away — mid-set.',
+  },
+  {
+    src: '/screenshots/screenshot-routine.webp',
+    w: 600,
+    h: 1234,
+    kicker: 'AI Routine Builder',
+    tone: 'ai',
+    caption: 'Spin up a hyper-tailored routine on a single screen.',
+  },
+  {
+    src: '/screenshots/screenshot-habits.webp',
+    w: 600,
+    h: 1269,
+    kicker: 'The “Have You…?” deck',
+    tone: 'forest',
+    caption: 'Flick through recovery habits in seconds.',
+  },
+];
+---
+
+<section id="see-it" class="bg-surface-warm">
+  <div class="mx-auto max-w-6xl px-6 py-16 md:py-24" data-hv-carousel>
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h2 class="font-display text-3xl font-black tracking-tight text-espresso md:text-4xl">
+          See it in action.
+        </h2>
+        <p class="mt-4 max-w-2xl leading-relaxed text-espresso/70">
+          Real screens from the app — the AI surfaces that read your training, the
+          logging flow built for the gym floor, and the daily habit deck.
+        </p>
+      </div>
+
+      {/* Arrows — desktop affordance; mobile users just swipe */}
+      <div class="hidden shrink-0 gap-2 sm:flex">
+        <button
+          type="button"
+          data-hv-prev
+          aria-label="Previous screenshot"
+          class="hv-arrow"
+        >
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+            <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          data-hv-next
+          aria-label="Next screenshot"
+          class="hv-arrow"
+        >
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="hv-track mt-12" data-hv-track>
+      {
+        shots.map((s) => (
+          <figure class="hv-slide flex flex-col items-center">
+            <div class="device">
+              <span class="device-speaker" aria-hidden="true" />
+              <img
+                src={s.src}
+                width={s.w}
+                height={s.h}
+                loading="lazy"
+                decoding="async"
+                alt={s.kicker + ' — Havyu AI screenshot'}
+                class="device-screen"
+              />
+              <span class="device-home" aria-hidden="true" />
+            </div>
+            <figcaption class="mt-5 text-center">
+              <p
+                class:list={[
+                  'text-xs font-bold uppercase tracking-[0.14em]',
+                  s.tone === 'ai' ? 'text-ai' : 'text-forest',
+                ]}
+              >
+                {s.kicker}
+              </p>
+              <p class="mt-1 text-sm leading-relaxed text-espresso/70">{s.caption}</p>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- Carousel track (native scroll-snap, touch swipe, hidden scrollbar) ---- */
+  .hv-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    padding-bottom: 8px; /* room for device shadow */
+  }
+  .hv-track::-webkit-scrollbar {
+    display: none; /* WebKit */
+  }
+  .hv-slide {
+    flex: 0 0 auto;
+    width: clamp(210px, 76vw, 250px);
+    scroll-snap-align: center;
+  }
+
+  /* ---- Arrow buttons ---- */
+  .hv-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-espresso);
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.15s ease,
+      background 0.15s ease;
+  }
+  .hv-arrow:hover {
+    transform: translateY(-1px);
+    background: #fff;
+  }
+  .hv-arrow:active {
+    transform: translateY(0);
+  }
+
+  /* ---- CSS phone mockup — bezel, side buttons, speaker + home indicator ---- */
+  .device {
+    position: relative;
+    width: 100%;
+    max-width: 270px;
+    padding: 22px 11px;
+    border-radius: 2.6rem;
+    background: linear-gradient(150deg, #2c2521 0%, #18120f 100%);
+    box-shadow:
+      0 18px 40px rgba(62, 39, 35, 0.28),
+      inset 0 0 0 1.5px rgba(255, 255, 255, 0.06);
+  }
+  .device::before,
+  .device::after {
+    content: '';
+    position: absolute;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, #3a322e, #221b18);
+  }
+  .device::before {
+    right: -2px;
+    top: 33%;
+    width: 3px;
+    height: 56px;
+  }
+  .device::after {
+    left: -2px;
+    top: 26%;
+    width: 3px;
+    height: 88px;
+  }
+  .device-screen {
+    display: block;
+    width: 100%;
+    border-radius: 1.55rem;
+    background: #000;
+  }
+  .device-speaker {
+    position: absolute;
+    top: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34%;
+    height: 5px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.16);
+  }
+  .device-home {
+    position: absolute;
+    bottom: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    height: 4px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hv-track {
+      scroll-behavior: auto;
+    }
+  }
+</style>
+
+<script>
+  // ✅ [FEATURE]: arrow-button scrolling for the screenshot carousel (no deps)
+  document.querySelectorAll('[data-hv-carousel]').forEach((root) => {
+    const track = root.querySelector('[data-hv-track]');
+    if (!track) return;
+    const step = () => {
+      const slide = track.querySelector('.hv-slide');
+      const gap = 24;
+      return slide ? slide.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
+    };
+    root
+      .querySelector('[data-hv-prev]')
+      ?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    root
+      .querySelector('[data-hv-next]')
+      ?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+  });
+</script>

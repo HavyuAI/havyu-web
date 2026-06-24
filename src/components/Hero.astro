@@ -1,0 +1,102 @@
+---
+// ✅ [FEATURE]: Hero — green-dominant, animated CSS gradient (Option B, no three.js).
+// Goes at: src/components/Hero.astro
+const APP_STORE_URL = 'https://apps.apple.com/app/id6766615743';
+---
+
+<header class="hero-bg">
+  <div class="relative z-10 mx-auto max-w-6xl px-6">
+    {/* Brand lockup: Havyu AI · Smart Lifting */}
+    <div class="flex items-center gap-3.5 pt-7">
+      {/* TODO: copy adaptive-icon.png → public/havyu-mark.png (white mark) */}
+      <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" class="h-12 w-auto" />
+      <span class="flex flex-col leading-none">
+        <span class="font-display text-2xl font-extrabold tracking-tight text-white">Havyu AI</span>
+        <span class="mt-1.5 text-xs font-bold uppercase tracking-[0.22em] text-white/60">
+          Smart Lifting
+        </span>
+      </span>
+    </div>
+
+    {/* Hero content */}
+    <div class="pt-16 pb-20 md:pt-24 md:pb-28">
+      <h1
+        class="max-w-4xl font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl"
+      >
+        Havyu connects the dots.<br class="hidden sm:block" /> You lift with absolute certainty.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
+        Havyu is the definitive AI Coach — an observant, overarching presence that
+        guides both your workouts and your lifestyle within a single, connected
+        ecosystem. It transforms your real-world training and recovery inputs into
+        immediate, actionable clarity — an unobstructed path to your goals.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-3">
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center rounded-full bg-white px-6 py-3 font-display font-bold tracking-wide text-forest shadow-card transition hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Download on the App Store
+        </a>
+        <span
+          aria-disabled="true"
+          class="inline-flex items-center rounded-full border border-white/30 px-6 py-3 font-display font-bold tracking-wide text-white/80"
+        >
+          Google Play — coming soon
+        </span>
+      </div>
+
+      {/* ✅ [FEATURE]: in-page section sub-nav (dwell time / jump links) */}
+      <nav
+        aria-label="Jump to section"
+        class="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/15 pt-6 text-sm font-semibold text-white/70"
+      >
+        <span class="text-xs font-bold uppercase tracking-[0.18em] text-white/55">Explore</span>
+        <a href="#pillars" class="transition hover:text-white">Pillars</a>
+        <a href="#intelligence" class="transition hover:text-white">Intelligence</a>
+        <a href="#see-it" class="transition hover:text-white">See it</a>
+        <a href="#faq" class="transition hover:text-white">FAQ</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .hero-bg {
+    position: relative;
+    overflow: hidden;
+    background-color: #14401f; /* forest-deep base */
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    z-index: 0;
+    background:
+      radial-gradient(circle at 30% 30%, #2e7d32 0%, transparent 45%),
+      radial-gradient(circle at 72% 32%, #1b5e20 0%, transparent 48%),
+      radial-gradient(circle at 50% 82%, #43a047 0%, transparent 52%);
+    animation: heroSpin 30s linear infinite;
+    will-change: transform;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(120% 80% at 50% 0%, transparent 62%, rgba(0, 0, 0, 0.2) 100%);
+  }
+  @keyframes heroSpin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg::before {
+      animation: none;
+    }
+  }
+</style>

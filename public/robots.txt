@@ -1,0 +1,6 @@
+# ✅ [FEATURE]: robots.txt → public/robots.txt
+# Allow everything, including AI crawlers (we want citations). Point to the sitemap.
+User-agent: *
+Allow: /
+
+Sitemap: https://havyu.org/sitemap-index.xml

@@ -1,0 +1,289 @@
+---
+// ✅ [FEATURE]: Landing page — green-dominant build from master copy.
+// Goes at: src/pages/index.astro
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { organizationSchema, webSiteSchema, appSchema } from '../data/schema';
+import NewsletterForm from '../components/react/NewsletterForm.tsx';
+import CoachGenie from '../components/react/CoachGenie.tsx';
+import Showcase from '../components/Showcase.astro';
+import FAQ from '../components/FAQ.astro';
+import { faqSchema } from '../data/faqs';
+import { AUTHOR, HAVYU_LINKS, personId, personSchema } from '../data/author';
+
+const origin = (Astro.site ?? new URL('https://havyu.org')).origin;
+// ✅ [FEATURE]: link Havyu's brand channels + founder onto the Organization entity
+const organization = organizationSchema(origin);
+organization.sameAs = [HAVYU_LINKS.appStore, HAVYU_LINKS.tiktok, HAVYU_LINKS.github];
+organization.founder = { '@type': 'Person', '@id': personId(origin), name: AUTHOR.name };
+
+const schema = [
+  organization,
+  webSiteSchema(origin),
+  appSchema(origin),
+  faqSchema(),
+  personSchema(origin),
+];
+
+const title =
+  'Havyu AI · Smart Lifting — The definitive AI coach for lifting and habits';
+const description =
+  'Havyu AI is the definitive AI coach — guiding your workouts and lifestyle in one connected ecosystem, turning your training and recovery into actionable clarity and the hidden patterns behind your next PR.';
+---
+
+<Base title={title} description={description} schema={schema}>
+  {/* ✅ [FEATURE]: Hero (green, Option B) */}
+  <Hero />
+
+  {/* ✅ [FEATURE]: Two pillars */}
+  <section id="pillars" class="mx-auto max-w-6xl px-6 py-16 md:py-24">
+    <h2 class="font-display text-3xl font-black tracking-tight text-espresso md:text-4xl">
+      Two pillars. One fluid loop.
+    </h2>
+    <p class="mt-4 max-w-2xl leading-relaxed text-espresso/70">
+      Your lifting results reinforce your lifestyle choices, and your daily
+      habits insulate you against frustrating performance stalls. Havyu lives
+      quietly at the center of this cycle, turning your raw data into clear
+      training advantages.
+    </p>
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl bg-iron p-8 shadow-card">
+        <p class="text-xs font-bold uppercase tracking-[0.16em] text-white/80">
+          Pillar 1 · Iron &amp; Earth
+        </p>
+        <h3 class="mt-3 font-display text-2xl font-extrabold text-white">
+          Frictionless strength tracking
+        </h3>
+        <p class="mt-3 leading-relaxed text-white">
+          Built entirely for the live environment of the gym floor — log hundreds
+          of exercises in seconds. Coordinate tight supersets, high-velocity
+          circuits, and RPE targets in just two taps, keeping the interface out of
+          your way so you can focus entirely on your training.
+        </p>
+      </article>
+      <article class="rounded-3xl bg-forest p-8 shadow-card">
+        <p class="text-xs font-bold uppercase tracking-[0.16em] text-white/80">
+          Pillar 2 · Leaf &amp; Growth
+        </p>
+        <h3 class="mt-3 font-display text-2xl font-extrabold text-white">
+          Gamified lifestyle accountability
+        </h3>
+        <p class="mt-3 leading-relaxed text-white">
+          Keeping tabs on your recovery shouldn't feel like an administrative
+          chore. Havyu turns lifestyle tracking into a rapid-fire game — flick
+          through the signature “Have You…?” deck (protein, hydration, sleep) in
+          seconds to secure your Perfect Day streak reward.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  {/* ✅ [FEATURE]: The Intelligence Infrastructure — the deep-green signature band */}
+  <section id="intelligence" class="bg-forest-deep">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <p class="text-xs font-bold uppercase tracking-[0.18em] text-ai-bright">
+        The intelligence infrastructure
+      </p>
+      <h2 class="mt-4 max-w-3xl font-display text-3xl font-black tracking-tight text-white md:text-4xl">
+        Havyu lives at the center of your training.
+      </h2>
+      <p class="mt-4 max-w-2xl leading-relaxed text-white/60">
+        The intelligence layer observing your behaviour, identifying patterns, and
+        providing the definitive guide you need to move forward.
+      </p>
+
+      <div class="mt-12 grid gap-5 md:grid-cols-2">
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-8 md:col-span-2">
+          <span aria-hidden="true" class="text-xl leading-none text-ai-bright">✦</span>
+          <h3 class="mt-3 font-display text-2xl font-extrabold text-white">
+            The Hidden Pattern Detector
+          </h3>
+          <p class="mt-2 max-w-3xl leading-relaxed text-white/70">
+            Your training doesn't happen in an isolated bubble. Havyu automatically
+            links your daily recovery metrics directly to your workout performance —
+            matching each session against the prior day's habits to uncover concrete
+            correlations. It shows exactly how hitting your protein target and
+            sleeping well yesterday translated into a strong session today.
+          </p>
+        </article>
+
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-8">
+          <span aria-hidden="true" class="text-xl leading-none text-ai-bright">✦</span>
+          <h3 class="mt-3 font-display text-xl font-extrabold text-white">
+            The tap-to-summon AI coach
+          </h3>
+          <p class="mt-2 leading-relaxed text-white/70">
+            Always present on your screen, like a genie in a lamp. One tap brings up
+            your overarching coach for instant, tailored advice exactly when you need
+            it — whether you're adjusting a mid-workout target or optimizing your
+            recovery protocol.
+          </p>
+        </article>
+
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-8">
+          <span aria-hidden="true" class="text-xl leading-none text-ai-bright">✦</span>
+          <h3 class="mt-3 font-display text-xl font-extrabold text-white">
+            The Coaching Spotlight
+          </h3>
+          <p class="mt-2 leading-relaxed text-white/70">
+            A continuous analytical layer running in the background — monitoring your
+            estimated 1-rep-max trajectories, flagging progression stalls before they
+            manifest, and maintaining your mathematical North Star milestones.
+          </p>
+        </article>
+
+        <article class="rounded-3xl border border-white/10 bg-white/5 p-8 md:col-span-2">
+          <span aria-hidden="true" class="text-xl leading-none text-ai-bright">✦</span>
+          <h3 class="mt-3 font-display text-xl font-extrabold text-white">
+            360° session bracketing
+          </h3>
+          <p class="mt-2 max-w-3xl leading-relaxed text-white/70">
+            True coaching isn't passive. Get sharp Pre-Workout Briefings with tactical
+            execution cues based on your current recovery state, log hands-free with
+            adaptive Voice Logging, and walk away with a clinical Post-Session Review
+            mapping your volume landmarks.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {/* ✅ [FEATURE]: See it in action — real app screenshots */}
+  <Showcase />
+
+  {/* ✅ [FEATURE]: CoachGenie — replica of the in-app AI Coach Q&A surface */}
+  <section class="mx-auto max-w-6xl px-6 py-16 md:py-24">
+    <h2 class="font-display text-3xl font-black tracking-tight text-espresso md:text-4xl">
+      Ask your coach.
+    </h2>
+    <p class="mt-4 max-w-2xl leading-relaxed text-espresso/70">
+      Havyu reads your training and recovery, then explains what's working in plain
+      language — the hidden patterns, surfaced as answers. Tap a question to see how it responds.
+    </p>
+    <div class="mt-10">
+      <CoachGenie client:visible />
+    </div>
+  </section>
+
+  {/* ✅ [FEATURE]: Intelligent programming */}
+  <section class="mx-auto max-w-6xl px-6 py-16 md:py-24">
+    <h2 class="font-display text-3xl font-black tracking-tight text-espresso md:text-4xl">
+      Intelligent programming, instantly.
+    </h2>
+    <p class="mt-4 max-w-2xl leading-relaxed text-espresso/70">
+      Whether you want a clinical, structured program or a quick way to break up
+      gym monotony, Havyu adapts to how you want to build muscle.
+    </p>
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-border bg-surface p-8 shadow-card">
+        <h3 class="font-display text-2xl font-extrabold text-espresso">
+          AI Routine Builder
+        </h3>
+        <p class="mt-3 leading-relaxed text-espresso/70">
+          Defeat the intimidation of entering the gym unprepared. Instantly spin up
+          comprehensive, hyper-tailored routines centered on your precise training
+          focus, with an intuitive single-screen generation tool.
+        </p>
+      </article>
+      <article class="rounded-3xl border border-border bg-surface p-8 shadow-card">
+        <h3 class="font-display text-2xl font-extrabold text-espresso">
+          Exercise Swipe Discovery
+        </h3>
+        <p class="mt-3 leading-relaxed text-espresso/70">
+          Gamify workout creation with an interactive discovery deck. Swipe through
+          exercise cards — lock in the movements you want, skip the ones you don't —
+          and Havyu remembers your preferences over time.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  {/* ✅ [FEATURE]: Audience — scales from beginner to advanced */}
+  <section class="mx-auto max-w-6xl px-6 py-16 md:py-24">
+    <h2 class="max-w-3xl font-display text-3xl font-black tracking-tight text-espresso md:text-4xl">
+      Built for the first day. Optimized for the five-year plateau.
+    </h2>
+    <p class="mt-4 max-w-2xl leading-relaxed text-espresso/70">
+      From establishing your very first routine to fighting for a minor edge on a
+      stubborn compound lift, Havyu's coaching scales seamlessly to your depth.
+    </p>
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      <article class="rounded-3xl border border-border bg-surface p-8 shadow-card">
+        <p class="text-xs font-bold uppercase tracking-[0.16em] text-chestnut">
+          For beginners
+        </p>
+        <p class="mt-3 leading-relaxed text-espresso/70">
+          You don't need confusing data overload; you need a clear path that removes
+          the intimidation of walking in without a plan. Havyu acts as your expert
+          companion — giving you immediate structure, establishing consistent
+          recovery habits, and keeping you moving forward safely, without the anxiety
+          of a blank document.
+        </p>
+      </article>
+      <article class="rounded-3xl border border-border bg-surface p-8 shadow-card">
+        <p class="text-xs font-bold uppercase tracking-[0.16em] text-forest">
+          For advanced lifters
+        </p>
+        <p class="mt-3 leading-relaxed text-espresso/70">
+          You already know how to push hard, but you're blind to subtle, underlying
+          trends. Havyu filters out your warm-up noise, models your actual strength
+          decay, and uncovers the precise lifestyle bottlenecks standing between you
+          and your next performance breakthrough.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  {/* ✅ [FEATURE]: FAQ — accordion + FAQPage schema (AEO) */}
+  <FAQ />
+
+  {/* ✅ [FEATURE]: Newsletter signup — closing tagline + Supabase-wired island */}
+  <section id="signup" class="mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
+    <h2 class="font-display text-3xl font-black tracking-tight text-espresso md:text-4xl">
+      Havyu connects the dots.<br /> You lift with absolute certainty.
+    </h2>
+    <p class="mt-4 leading-relaxed text-espresso/70">
+      Get the edge in your inbox — training insights and product updates as Havyu grows.
+    </p>
+    <div class="mt-8">
+      <NewsletterForm client:visible />
+    </div>
+  </section>
+
+  {/* ✅ [FEATURE]: Footer — deep green; brand lockup, Havyu channels, author block */}
+  <footer class="bg-forest-deep">
+    <div class="mx-auto max-w-6xl px-6 py-12">
+      <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+        <div>
+          <div class="flex items-center gap-3">
+            {/* TODO: copy adaptive-icon.png → public/havyu-mark.png */}
+            <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" loading="lazy" class="h-9 w-auto" />
+            <span class="flex flex-col leading-none">
+              <span class="font-display text-lg font-bold text-white">Havyu AI</span>
+              <span class="mt-1 text-[0.6rem] font-bold uppercase tracking-[0.22em] text-white/55">
+                Smart Lifting
+              </span>
+            </span>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/70">
+            <a href={HAVYU_LINKS.appStore} target="_blank" rel="me noopener" class="transition hover:text-white">App Store</a>
+            <a href={HAVYU_LINKS.tiktok} target="_blank" rel="me noopener" class="transition hover:text-white">TikTok</a>
+            <a href={HAVYU_LINKS.github} target="_blank" rel="me noopener" class="transition hover:text-white">GitHub</a>
+          </div>
+        </div>
+        <nav class="flex gap-6 text-sm text-white/70">
+          <a href="/privacy" class="transition hover:text-white">Privacy</a>
+          <a href="/terms" class="transition hover:text-white">Terms</a>
+        </nav>
+      </div>
+
+      {/* ✅ [FEATURE]: author credibility block (Person entity) */}
+      <div class="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-sm text-white/60">
+          Built by <a href={AUTHOR.instagram} target="_blank" rel="author me noopener" class="font-semibold text-white/80 transition hover:text-white">{AUTHOR.name}</a> — {AUTHOR.tagline}
+        </p>
+        <p class="text-xs text-white/50">© 2026 Havyu AI</p>
+      </div>
+    </div>
+  </footer>
+</Base>
