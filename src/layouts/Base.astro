@@ -47,8 +47,11 @@ const ogImageUrl = new URL(ogImage, site).href;
     {/* ✅ [PERF]: preload critical font weights (LCP — hero headline + body) */}
     <link rel="preload" href={lsBlack} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={lsRegular} as="font" type="font/woff2" crossorigin />
-    {/* TODO: add a COLORED icon (green-bg square works on any tab) at public/favicon.png */}
-    <link rel="icon" href="/favicon.png" />
+    {/* ✅ [FEATURE]: favicon set — green-tiled Havyu mark (browser tab + iOS home screen) */}
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
