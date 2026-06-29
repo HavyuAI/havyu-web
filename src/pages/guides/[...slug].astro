@@ -1,0 +1,21 @@
+---
+// ✅ [FEATURE]: Guide article route (Astro 6) — renders each Markdown guide via GuideLayout.
+// Goes at: src/pages/guides/[...slug].astro
+import { getCollection, render } from 'astro:content';
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides', ({ data }) => !data.draft);
+  return guides.map((entry) => ({
+    params: { slug: entry.id }, // glob loader: id = slugified filename
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<GuideLayout {...entry.data} slug={entry.id}>
+  <Content />
+</GuideLayout>

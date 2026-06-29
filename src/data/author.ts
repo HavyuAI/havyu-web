@@ -9,7 +9,7 @@
 
 export const AUTHOR = {
   name: 'James Hainsworth',
-  role: 'Founder & Developer',
+  role: 'Developer',
   // Short line for the footer.
   tagline: 'Developer, fitness & AI enthusiast.',
   // Full sentence for the Person schema description.

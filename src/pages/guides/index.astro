@@ -1,0 +1,74 @@
+---
+// ✅ [FEATURE]: Guides hub — content-cluster landing page.
+// Goes at: src/pages/guides/index.astro
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const all = await getCollection('guides', ({ data }) => !data.draft);
+// Pillar first, then newest.
+const guides = all.sort((a, b) => {
+  if (a.data.pillar !== b.data.pillar) return a.data.pillar ? -1 : 1;
+  return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+});
+
+const title = 'Guides — Havyu | Lifting, recovery and the science of progress';
+const description =
+  'Evidence-based guides on lifting, recovery and habits — how sleep, protein and consistency shape your strength, from the team behind the Havyu AI coach.';
+---
+
+<Base title={title} description={description}>
+  <header class="bg-forest-deep">
+    <div class="mx-auto max-w-5xl px-6 py-16 md:py-20">
+      <a href="/" class="inline-flex items-center gap-2.5">
+        <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" class="h-9 w-auto" />
+        <span class="font-display text-lg font-bold text-white">Havyu AI</span>
+      </a>
+      <p class="mt-6 text-xs font-bold uppercase tracking-[0.22em] text-ai-bright">Guides</p>
+      <h1 class="mt-3 max-w-2xl font-display text-4xl font-black leading-tight tracking-tight text-white md:text-5xl">
+        The science of getting stronger.
+      </h1>
+      <p class="mt-4 max-w-xl leading-relaxed text-white/65">
+        Lifting and recovery, explained. Evidence-based guides on how your training and your
+        habits connect — from the team behind the Havyu AI coach.
+      </p>
+    </div>
+  </header>
+
+  <section class="mx-auto max-w-5xl px-6 py-14 md:py-20">
+    {guides.length === 0 ? (
+      <p class="text-espresso/60">New guides are on the way.</p>
+    ) : (
+      <div class="grid gap-6 md:grid-cols-2">
+        {guides.map((g) => (
+          <a
+            href={`/guides/${g.id}`}
+            class="group flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-card transition hover:-translate-y-1"
+          >
+            {g.data.heroImage && (
+              <img
+                src={g.data.heroImage}
+                alt={g.data.heroImageAlt ?? ''}
+                width="1200"
+                height="675"
+                loading="lazy"
+                class="aspect-[16/9] w-full object-cover"
+              />
+            )}
+            <div class="flex flex-1 flex-col p-6">
+              {g.data.pillar && (
+                <span class="mb-2 w-fit rounded-full bg-ai/10 px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-[0.14em] text-ai">
+                  Start here
+                </span>
+              )}
+              <h2 class="font-display text-xl font-extrabold leading-snug text-espresso transition group-hover:text-forest">
+                {g.data.displayTitle ?? g.data.title}
+              </h2>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-espresso/65">{g.data.description}</p>
+              <span class="mt-4 text-sm font-bold text-forest">Read →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </section>
+</Base>
