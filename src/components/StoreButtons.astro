@@ -1,16 +1,21 @@
 ---
-// ✅ [FEATURE]: Shared app-store buttons — Apple App Store badge + Google Play "coming soon".
+// ✅ [FEATURE]: Shared app-store buttons — Apple App Store + Google Play (both LIVE).
 // Used on the home hero (onDark) and the guides CTA (onLight) so both stay identical.
 // Goes at: src/components/StoreButtons.astro
 interface Props {
   variant?: 'onLight' | 'onDark';
   appStoreUrl: string;
+  playStoreUrl?: string;
 }
-const { variant = 'onLight', appStoreUrl } = Astro.props;
+const {
+  variant = 'onLight',
+  appStoreUrl,
+  // ✅ [FEATURE]: Google Play now LIVE
+  playStoreUrl = 'https://play.google.com/store/apps/details?id=com.havyu.app',
+} = Astro.props;
 
-const appStoreClass = variant === 'onDark' ? 'bg-white text-forest' : 'bg-espresso text-white';
-const playClass =
-  variant === 'onDark' ? 'border-white/30 text-white/80' : 'border-border text-espresso/55';
+// Both badges share the same filled style so they read as a matched pair.
+const badgeClass = variant === 'onDark' ? 'bg-white text-forest' : 'bg-espresso text-white';
 ---
 
 <div class="flex flex-wrap items-center gap-3">
@@ -19,7 +24,7 @@ const playClass =
     href={appStoreUrl}
     target="_blank"
     rel="noopener"
-    class={`inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-card transition hover:-translate-y-0.5 ${appStoreClass}`}
+    class={`inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-card transition hover:-translate-y-0.5 ${badgeClass}`}
   >
     <svg viewBox="0 0 384 512" aria-hidden="true" class="h-6 w-6 fill-current">
       <path
@@ -32,10 +37,12 @@ const playClass =
     </span>
   </a>
 
-  {/* Google Play — four-colour mark, "coming soon" (disabled) */}
-  <span
-    aria-disabled="true"
-    class={`inline-flex items-center gap-2.5 rounded-full border px-5 py-2.5 ${playClass}`}
+  {/* Google Play — four-colour mark, LIVE link */}
+  <a
+    href={playStoreUrl}
+    target="_blank"
+    rel="noopener"
+    class={`inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-card transition hover:-translate-y-0.5 ${badgeClass}`}
   >
     <svg viewBox="0 0 48 48" aria-hidden="true" class="h-6 w-6">
       <polygon points="12,8 15,24 12,40" fill="#00A1FF"></polygon>
@@ -44,8 +51,8 @@ const playClass =
       <polygon points="32,16 41,24 32,32 30,24" fill="#FFCE00"></polygon>
     </svg>
     <span class="flex flex-col items-start leading-none">
-      <span class="text-[0.62rem] font-medium">Coming soon to</span>
+      <span class="text-[0.62rem] font-medium">Get it on</span>
       <span class="font-display text-base font-bold">Google Play</span>
     </span>
-  </span>
+  </a>
 </div>
