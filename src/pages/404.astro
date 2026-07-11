@@ -1,0 +1,46 @@
+---
+// ✅ [FIX]: 404 page — branded dead-end recovery (was the bare Cloudflare 404).
+// Goes at: src/pages/404.astro
+import Base from '../layouts/Base.astro';
+
+const title = 'Page not found — Havyu AI';
+const description = "That page doesn't exist. Head back to Havyu — the AI coach for lifting weights.";
+---
+
+<Base title={title} description={description} canonicalPath="/404">
+  <main class="hero-404 flex min-h-[70vh] flex-col items-center justify-center px-6 text-center">
+    <div class="relative z-10 mx-auto max-w-lg">
+      <a href="/" class="inline-flex items-center gap-2.5">
+        <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" class="h-10 w-auto" />
+        <span class="font-display text-lg font-bold text-white">Havyu AI</span>
+      </a>
+      <p class="mt-10 text-xs font-bold uppercase tracking-[0.22em] text-ai-bright">Error 404</p>
+      <h1 class="mt-3 font-display text-4xl font-black leading-tight tracking-tight text-white md:text-5xl">
+        This page didn't make the cut.
+      </h1>
+      <p class="mt-4 leading-relaxed text-white/70">
+        The link's broken or the page has moved. Let's get you back to something useful.
+      </p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <a
+          href="/"
+          class="rounded-full bg-white px-6 py-3 font-display font-bold text-forest shadow-card transition hover:-translate-y-0.5"
+        >
+          Back to home
+        </a>
+        <a
+          href="/guides"
+          class="rounded-full border border-white/25 px-6 py-3 font-display font-bold text-white transition hover:bg-white/10"
+        >
+          Read the guides
+        </a>
+      </div>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .hero-404 {
+    background-color: #14401f; /* forest-deep */
+  }
+</style>

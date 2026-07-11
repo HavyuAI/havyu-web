@@ -24,6 +24,8 @@ const guides = defineCollection({
     draft: z.boolean().default(false),
     // Drives the visible FAQ block AND the FAQPage JSON-LD (AEO).
     faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+    // ✅ [FIX]: related-guide slugs (crawl depth / "keep reading"). Optional; rendered later.
+    related: z.array(z.string()).default([]),
   }),
 });
 

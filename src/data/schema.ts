@@ -16,7 +16,8 @@ export function organizationSchema(origin: string): Record<string, unknown> {
     name: NAME,
     slogan: SLOGAN,
     url: origin,
-    logo: `${origin}/logo.png`, // TODO: add /logo.png to public/
+    // ✅ [FIX]: use the shipped icon (was /logo.png, which 404s — no such asset).
+    logo: `${origin}/apple-touch-icon.png`,
     description: DESCRIPTION,
     sameAs: [
       // TODO: add App Store, Google Play, and social profile URLs.

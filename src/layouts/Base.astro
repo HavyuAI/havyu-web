@@ -18,6 +18,8 @@ interface Props {
   ogImage?: string;
   /** Alt text for the share image. */
   ogImageAlt?: string;
+  /** Open Graph type — 'website' (default) or 'article' for guides. */
+  ogType?: 'website' | 'article';
   /** JSON-LD objects, injected as <script type="application/ld+json">. */
   schema?: Record<string, unknown>[];
 }
@@ -28,6 +30,7 @@ const {
   canonicalPath = Astro.url.pathname,
   ogImage = '/og-image.png',
   ogImageAlt = 'Havyu AI — the AI coach for lifting and lifestyle',
+  ogType = 'website', // ✅ [FIX]: guides pass 'article'
   schema = [],
 } = Astro.props;
 
@@ -59,7 +62,7 @@ const ogImageUrl = new URL(ogImage, site).href;
     <link rel="canonical" href={canonical} />
 
     {/* ✅ [FEATURE]: Open Graph (rich unfurls in social + AI link previews) */}
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="Havyu AI" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

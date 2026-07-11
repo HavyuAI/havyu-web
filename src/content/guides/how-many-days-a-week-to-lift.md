@@ -2,17 +2,17 @@
 title: "How many days a week should you lift to build muscle?"
 description: "For most people, 3-4 lifting days a week is the sweet spot. The real key is training each muscle about twice a week with enough recovery between sessions. Here's how to choose your frequency."
 pubDate: 2026-06-27
-heroImage: "/guides/how-many-days-a-week-to-lift.webp"
-heroAlt: "An open training logbook on a workbench beside a lifting belt and wrist wraps, with a wall calendar of marked-off training days behind it."
+heroImageAlt: "An open training logbook on a workbench beside a lifting belt and wrist wraps, with a wall calendar of marked-off training days behind it."
+tags: ["Frequency", "Programming", "Fundamentals"]
 faqs:
-  - question: "How many days a week should you lift to build muscle?"
-    answer: "Most people do best on 3-4 lifting days a week. Beginners can build muscle on 2-3 full-body sessions; intermediate and advanced lifters usually use 4-5 days with a split. What matters more than the exact number is hitting each muscle group around twice a week and recovering between sessions."
-  - question: "Is lifting 3 days a week enough to build muscle?"
-    answer: "Yes. Three well-structured full-body or upper/lower sessions a week are enough to build muscle for most people, especially beginners and intermediates. Three focused days that you recover from fully beat five rushed, under-recovered ones."
-  - question: "How often should you train each muscle group?"
-    answer: "About twice a week. A meta-analysis found that training a muscle group twice weekly produced more growth than once weekly when total volume was matched (Schoenfeld et al., 2016). Beyond that, weekly volume and recovery drive the result more than raw frequency."
-  - question: "Should you lift weights every day?"
-    answer: "You can train daily if you split body parts so each muscle still gets rest, but it isn't necessary and raises the risk of under-recovery. For most people, building in 2-3 rest or lighter days a week leads to better long-term progress than training all seven."
+  - q: "How many days a week should you lift to build muscle?"
+    a: "Most people do best on 3-4 lifting days a week. Beginners can build muscle on 2-3 full-body sessions; intermediate and advanced lifters usually use 4-5 days with a split. What matters more than the exact number is hitting each muscle group around twice a week and recovering between sessions."
+  - q: "Is lifting 3 days a week enough to build muscle?"
+    a: "Yes. Three well-structured full-body or upper/lower sessions a week are enough to build muscle for most people, especially beginners and intermediates. Three focused days that you recover from fully beat five rushed, under-recovered ones."
+  - q: "How often should you train each muscle group?"
+    a: "About twice a week. A meta-analysis found that training a muscle group twice weekly produced more growth than once weekly when total volume was matched (Schoenfeld et al., 2016). Beyond that, weekly volume and recovery drive the result more than raw frequency."
+  - q: "Should you lift weights every day?"
+    a: "You can train daily if you split body parts so each muscle still gets rest, but it isn't necessary and raises the risk of under-recovery. For most people, building in 2-3 rest or lighter days a week leads to better long-term progress than training all seven."
 related:
   - "how-recovery-drives-strength"
   - "does-sleep-affect-muscle-growth"

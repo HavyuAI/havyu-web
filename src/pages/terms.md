@@ -1,3 +1,9 @@
+---
+layout: ../layouts/LegalLayout.astro
+title: Terms of Service — Havyu AI
+description: The terms governing your use of Havyu AI — subscriptions, medical and injury disclaimer, acceptable use, and limitation of liability.
+---
+
 # Terms of Service for Havyu AI
 
 **Last Updated:** 23 June 2026

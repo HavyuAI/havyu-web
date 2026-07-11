@@ -41,7 +41,7 @@ export const faqs: Faq[] = [
   },
   {
     q: 'Which platforms is Havyu available on?',
-    a: 'Havyu is available now on the Apple App Store, with Google Play coming soon.',
+    a: 'Havyu is available now on both the Apple App Store and Google Play, for iPhone and Android.',
   },
 ];
 
