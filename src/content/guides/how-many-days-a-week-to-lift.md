@@ -2,7 +2,8 @@
 title: "How many days a week should you lift to build muscle?"
 description: "For most people, 3-4 lifting days a week is the sweet spot. The real key is training each muscle about twice a week with enough recovery between sessions. Here's how to choose your frequency."
 pubDate: 2026-06-27
-heroImageAlt: "An open training logbook on a workbench beside a lifting belt and wrist wraps, with a wall calendar of marked-off training days behind it."
+heroImage: "/guides/how-many-days-frequency.webp"
+heroImageAlt: "A handwritten weekly Push/Pull/Legs training split on a gym whiteboard, with rest days marked."
 tags: ["Frequency", "Programming", "Fundamentals"]
 faqs:
   - q: "How many days a week should you lift to build muscle?"
