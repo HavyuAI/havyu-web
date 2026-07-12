@@ -4,10 +4,17 @@
 // Pass the site origin (e.g. Astro.site.origin) so URLs stay canonical.
 
 const NAME = 'Havyu AI';
-const SLOGAN = 'Smart Lifting';
+// ✅ [FIX]: locked tagline (11 July 2026). Was 'Smart Lifting' — that's the
+// training PILLAR's name (per Brand.md), not the brand's slogan. Using it as
+// the slogan was exactly the "never lead with features/pillars" mistake
+// Brand.md's messaging hierarchy (Coach → Progress → Pillars → Features) warns against.
+const SLOGAN = 'The AI Coach for Lifting Weights';
 
+// ✅ [FIX]: rewritten to lead with the Coach (Brand.md hierarchy), framing the
+// pillars as two inputs to one system rather than naming a pillar as if it
+// were the whole product's identity.
 const DESCRIPTION =
-  'Havyu AI is a two-pillar fitness app — Smart Lifting — that combines frictionless strength tracking with daily habit accountability, using AI to surface the connections between your training and your recovery habits.';
+  'Havyu is the AI Coach for Lifting Weights. It observes your training and your recovery — Smart Lifting and Habits — as two inputs to one connected coaching system, surfacing the patterns behind your progress.';
 
 export function organizationSchema(origin: string): Record<string, unknown> {
   return {
@@ -30,7 +37,7 @@ export function webSiteSchema(origin: string): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: `${NAME} · ${SLOGAN}`,
+    name: `${NAME} — ${SLOGAN}`,
     url: origin,
     description: DESCRIPTION,
   };

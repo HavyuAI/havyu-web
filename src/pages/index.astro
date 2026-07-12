@@ -25,11 +25,12 @@ const schema = [
   personSchema(origin),
 ];
 
-// ✅ [FEATURE]: title/meta aligned to the "lifting and lifestyle" positioning
-const title =
-  'Havyu AI · Smart Lifting — The AI coach for lifting and lifestyle';
+// ✅ [FIX]: locked tagline (11 July 2026) — was "Havyu AI · Smart Lifting —
+// The AI coach for lifting and lifestyle" (misused the training pillar's
+// name as the brand slogan, and buried the Coach positioning).
+const title = 'Havyu AI — The AI Coach for Lifting Weights';
 const description =
-  'Havyu is the AI coach for lifting and lifestyle — tracking your training and recovery in one connected ecosystem and surfacing the hidden patterns behind your progress.';
+  'Havyu is the AI Coach for Lifting Weights. It observes your training and your recovery — Smart Lifting and Habits — as two inputs to one connected coaching system, surfacing the patterns behind your progress.';
 ---
 
 <Base title={title} description={description} schema={schema}>
@@ -310,8 +311,9 @@ const description =
             <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" loading="lazy" class="h-9 w-auto" />
             <span class="flex flex-col leading-none">
               <span class="font-display text-lg font-bold text-white">Havyu AI</span>
+              {/* ✅ [FIX]: was "Smart Lifting" — matches the same fix in Hero.astro's lockup. */}
               <span class="mt-1 text-[0.6rem] font-bold uppercase tracking-[0.22em] text-white/55">
-                Smart Lifting
+                AI Coach
               </span>
             </span>
           </div>

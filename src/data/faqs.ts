@@ -13,7 +13,7 @@ export interface Faq {
 export const faqs: Faq[] = [
   {
     q: 'What is Havyu AI?',
-    a: 'Havyu is the AI coach for lifting and lifestyle. It tracks your workouts and your daily habits in one app, then connects the two — observing how your sleep, protein, hydration and recovery affect your training performance, and surfacing the patterns behind your progress.',
+    a: 'Havyu is the AI Coach for Lifting Weights. It observes your workouts and your daily habits, then connects the two — tracking how your sleep, protein, hydration and recovery affect your training performance, and surfacing the patterns behind your progress.',
   },
   {
     q: 'Is Havyu free, and what does Pro cost?',

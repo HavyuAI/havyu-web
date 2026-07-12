@@ -7,23 +7,26 @@ const APP_STORE_URL = 'https://apps.apple.com/app/id6766615743';
 
 <header class="hero-bg">
   <div class="relative z-10 mx-auto max-w-6xl px-6">
-    {/* Brand lockup: Havyu AI · Smart Lifting */}
+    {/* Brand lockup: Havyu AI · AI Coach */}
     <div class="flex items-center gap-3.5 pt-7">
       {/* TODO: copy adaptive-icon.png → public/havyu-mark.png (white mark) */}
       <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" class="h-12 w-auto" />
       <span class="flex flex-col leading-none">
         <span class="font-display text-2xl font-extrabold tracking-tight text-white">Havyu AI</span>
+        {/* ✅ [FIX]: was "Smart Lifting" — that's the training pillar's name, not
+            the brand's identity line. This lockup sits directly above the
+            strapline, which now carries the actual tagline. */}
         <span class="mt-1.5 text-xs font-bold uppercase tracking-[0.22em] text-white/60">
-          Smart Lifting
+          AI Coach
         </span>
       </span>
     </div>
 
     {/* Hero content */}
     <div class="pt-16 pb-20 md:pt-24 md:pb-28">
-      {/* ✅ [FEATURE]: positioning strapline — the AI coach for lifting and lifestyle */}
+      {/* ✅ [FIX]: locked tagline (11 July 2026) — was "The AI coach for lifting & lifestyle" */}
       <p class="text-xs font-bold uppercase tracking-[0.22em] text-ai-bright">
-        The AI coach for lifting &amp; lifestyle
+        The AI Coach for Lifting Weights
       </p>
       <h1
         class="mt-5 max-w-4xl font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl"
