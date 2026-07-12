@@ -2,6 +2,7 @@
 // ✅ [FEATURE]: GuideLayout — article wrapper for /guides (SEO + Article/FAQ schema + brand CTA).
 // Goes at: src/layouts/GuideLayout.astro
 import Base from './Base.astro';
+import GuideHeader from '../components/GuideHeader.astro'; // ✅ [FEATURE]: sticky brand bar (Batch 6, F-19)
 import StoreButtons from '../components/StoreButtons.astro';
 import { AUTHOR, HAVYU_LINKS, personId, personSchema } from '../data/author';
 import { getCollection } from 'astro:content'; // ✅ [FEATURE]: fetch related-guide entries (Batch 5)
@@ -125,6 +126,7 @@ const ogAlt = heroImageAlt ?? 'Havyu AI — The AI Coach for Lifting Weights'; /
   ogType="article"
   schema={schema}
 >
+  <GuideHeader />
   <article class="mx-auto max-w-3xl px-6 py-12 md:py-16">
     <a href="/guides" class="text-sm font-semibold text-forest transition hover:text-forest-deep">
       ← All guides

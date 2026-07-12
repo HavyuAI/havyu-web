@@ -1,0 +1,39 @@
+---
+// ✅ [FEATURE]: GuideHeader — persistent sticky brand bar for /guides pages (Batch 6, F-19).
+// Goes at: src/components/GuideHeader.astro
+//
+// Problem: a visitor landing on a guide from search has no top-level path back
+// to the product — only a small "← All guides" text link. This is deliberately
+// NOT used on the homepage (which has its own immersive hero) or on
+// privacy/terms — just the guide hub + guide articles, where visitors are
+// most likely to arrive cold from search/AI answer engines.
+//
+// Design: reuses the site's existing forest-deep + white-pill tokens (no new
+// colors), sits flush above the guides hub's existing dark header (same
+// bg-forest-deep, so at scroll-top they read as one seamless block — the
+// slim bar only reveals itself as separate chrome once you scroll past the
+// hub's intro banner and it sticks). On guide articles (light background,
+// no existing dark band) it reads as clean top-of-page brand chrome, same
+// treatment the rest of the site already uses to bookend content (Hero,
+// footer). Pure CSS `sticky` — no JS, no hydration, zero bundle cost.
+//
+// CTA deliberately links to "/" (the full pitch + both store buttons), not
+// straight to an app store — guide visitors are research-stage, and skipping
+// the "Havyu is the AI Coach" sell step straight to an install prompt is a
+// worse funnel than routing through the homepage first.
+---
+
+<div class="sticky top-0 z-40 bg-forest-deep">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+    <a href="/" class="inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 rounded-md">
+      <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" class="h-7 w-auto" />
+      <span class="font-display text-sm font-bold text-white">Havyu AI</span>
+    </a>
+    <a
+      href="/"
+      class="rounded-full bg-white px-4 py-1.5 text-xs font-bold text-forest shadow-card transition hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
+    >
+      Get the app
+    </a>
+  </div>
+</div>
