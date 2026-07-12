@@ -324,6 +324,9 @@ const description =
           </div>
         </div>
         <nav class="flex gap-6 text-sm text-white/70">
+          {/* ✅ [FEATURE]: footer nav previously had no path back to the content
+              cluster — a visitor landing anywhere but a guide had no way to find it. */}
+          <a href="/guides" class="transition hover:text-white">Guides</a>
           <a href="/privacy" class="transition hover:text-white">Privacy</a>
           <a href="/terms" class="transition hover:text-white">Terms</a>
         </nav>

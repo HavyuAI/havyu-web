@@ -15,6 +15,10 @@ faqs:
     a: "Yes. The best program is the one you'll actually follow. A simple, sustainable plan you run for months produces far more muscle than an optimised plan you abandon after three weeks because it's too demanding to maintain."
   - q: "How long does it take to build a training habit?"
     a: "Around two months on average. One study found it took a median of 66 days for a new daily behaviour to become automatic, with a wide range between people (Lally et al., 2010). The takeaway: expect it to take a while, and judge yourself on the month, not the day."
+related:
+  - "how-many-days-a-week-to-lift"
+  - "how-recovery-drives-strength"
+  - "how-habits-affect-your-lifting"
 ---
 
 **Short answer: consistency is the most important factor in building muscle — more important than having the perfect program.** Muscle is built from training volume accumulated over months, not from any single flawless session. A good-enough plan you follow week after week will out-build an optimal plan you abandon. And the research on habits is reassuring: missing the occasional session doesn't undo your progress. The lifters who get results aren't the ones with the smartest routine — they're the ones still training when everyone else has quit.

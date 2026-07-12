@@ -14,6 +14,10 @@ faqs:
     a: "A large 2018 meta-analysis found gains in muscle plateau at roughly 1.6 g of protein per kg of bodyweight per day, with little added benefit beyond about 2.2 g/kg. For a 75 kg lifter that's around 120–165 g a day, spread across meals."
   - q: "Can I out-train poor recovery?"
     a: "Only up to a point. Training is the stimulus, but the adaptation — actually getting stronger — happens during recovery. If sleep, protein and fatigue management are missing, the same hard training delivers a fraction of the result."
+related:
+  - "does-sleep-affect-muscle-growth"
+  - "how-much-protein-to-build-muscle"
+  - "how-habits-affect-your-lifting"
 ---
 
 Strength is built in two places: the **training** that challenges your muscles, and the **recovery** that turns that challenge into adaptation. Lift hard enough to demand more than your body is used to, then give it what it needs to rebuild — sleep, protein, and a handle on fatigue — and you come back stronger. Skip the recovery side, and the exact same training delivers a fraction of the result.

@@ -14,9 +14,23 @@ const guides = all.sort((a, b) => {
 const title = 'Guides — Havyu | Lifting, recovery and the science of progress';
 const description =
   'Evidence-based guides on lifting, recovery and habits — how sleep, protein and consistency shape your strength, from the team behind the Havyu AI coach.';
+
+// ✅ [FEATURE]: ItemList schema (Batch 5) — helps AI answer engines and Google
+// understand the guides hub as a structured collection, not just a link list.
+const site = Astro.site ?? new URL('https://havyu.org');
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: guides.map((g, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: new URL(`/guides/${g.id}`, site).href,
+    name: g.data.displayTitle ?? g.data.title,
+  })),
+};
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} schema={[itemListSchema]}>
   <header class="bg-forest-deep">
     <div class="mx-auto max-w-5xl px-6 py-16 md:py-20">
       <a href="/" class="inline-flex items-center gap-2.5">

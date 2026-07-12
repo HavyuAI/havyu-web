@@ -4,6 +4,7 @@
 import Base from './Base.astro';
 import StoreButtons from '../components/StoreButtons.astro';
 import { AUTHOR, HAVYU_LINKS, personId, personSchema } from '../data/author';
+import { getCollection } from 'astro:content'; // ✅ [FEATURE]: fetch related-guide entries (Batch 5)
 
 interface Props {
   title: string;
@@ -16,6 +17,7 @@ interface Props {
   tags?: string[];
   pillar?: boolean;
   faqs?: { q: string; a: string }[];
+  related?: string[]; // ✅ [FEATURE]: sibling guide slugs, powers the "Keep reading" block
   slug: string;
 }
 
@@ -30,6 +32,7 @@ const {
   tags = [],
   pillar = false,
   faqs = [],
+  related = [],
   slug,
 } = Astro.props;
 
@@ -37,6 +40,16 @@ const site = Astro.site ?? new URL('https://havyu.org');
 const origin = site.origin;
 const canonicalPath = `/guides/${slug}`;
 const url = new URL(canonicalPath, site).href;
+
+// ✅ [FEATURE]: "Keep reading" data — fetch the guides named in `related`,
+// preserving the order given and silently skipping any slug that doesn't
+// resolve (self-heals against a typo rather than failing the build).
+const relatedGuides =
+  related.length > 0
+    ? (
+        await getCollection('guides', ({ id, data }) => !data.draft && related.includes(id))
+      ).sort((a, b) => related.indexOf(a.id) - related.indexOf(b.id))
+    : [];
 
 const published = pubDate.toISOString();
 const modified = (updatedDate ?? pubDate).toISOString();
@@ -79,9 +92,26 @@ const faqSchema =
       }
     : null;
 
-const schema = [articleSchema, personSchema(origin), ...(faqSchema ? [faqSchema] : [])];
-
 const h1 = displayTitle ?? title;
+
+// ✅ [FEATURE]: BreadcrumbList schema (Batch 5) — Home → Guides → this article.
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: origin },
+    { '@type': 'ListItem', position: 2, name: 'Guides', item: new URL('/guides', site).href },
+    { '@type': 'ListItem', position: 3, name: h1, item: url },
+  ],
+};
+
+const schema = [
+  articleSchema,
+  personSchema(origin),
+  breadcrumbSchema,
+  ...(faqSchema ? [faqSchema] : []),
+];
+
 const ogImage = heroImage ?? '/og-image.png';
 const ogAlt = heroImageAlt ?? 'Havyu AI — The AI Coach for Lifting Weights'; // ✅ [FIX]: locked tagline
 ---
@@ -153,6 +183,38 @@ const ogAlt = heroImageAlt ?? 'Havyu AI — The AI Coach for Lifting Weights'; /
               </summary>
               <p class="mt-2 leading-relaxed text-espresso/70">{f.a}</p>
             </details>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {relatedGuides.length > 0 && (
+      // ✅ [FEATURE]: "Keep reading" — Batch 5 cluster-linking. Sits after the
+      // FAQ and before the CTA so the CTA stays the final element on the page.
+      <section class="mt-14">
+        <h2 class="font-display text-2xl font-black tracking-tight text-espresso">Keep reading</h2>
+        <div class="mt-5 grid gap-4 sm:grid-cols-3">
+          {relatedGuides.map((g) => (
+            <a
+              href={`/guides/${g.id}`}
+              class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-card transition hover:-translate-y-1"
+            >
+              {g.data.heroImage && (
+                <img
+                  src={g.data.heroImage}
+                  alt=""
+                  width="1200"
+                  height="675"
+                  loading="lazy"
+                  class="aspect-[16/9] w-full object-cover"
+                />
+              )}
+              <div class="p-4">
+                <p class="text-sm font-bold leading-snug text-espresso transition group-hover:text-forest">
+                  {g.data.displayTitle ?? g.data.title}
+                </p>
+              </div>
+            </a>
           ))}
         </div>
       </section>

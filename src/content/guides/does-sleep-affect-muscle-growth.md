@@ -15,6 +15,10 @@ faqs:
     a: "You can still make progress, but you're leaving gains on the table. At 5-6 hours, protein synthesis, hormones, and training performance all take a measurable hit, so the same effort in the gym produces a smaller result over time."
   - q: "Is one bad night of sleep a problem?"
     a: "One poor night won't undo your training, but it does have acute effects — reduced muscle protein synthesis and lower next-day testosterone have been measured after a single night of deprivation. The real cost comes from chronically short sleep, not the occasional rough night."
+related:
+  - "how-recovery-drives-strength"
+  - "how-much-protein-to-build-muscle"
+  - "how-important-is-training-consistency"
 ---
 
 **Short answer: yes, sleep has a large and well-documented effect on muscle growth and strength.** Muscle isn't built in the gym — training is the stimulus, but the repair and growth happen while you recover, and a big share of that happens overnight. Sleep restriction lowers testosterone, raises cortisol, blunts muscle protein synthesis, and — during a calorie deficit — pushes your body to give up muscle instead of fat. For lifters, 7-9 hours a night is one of the highest-leverage recovery habits there is.

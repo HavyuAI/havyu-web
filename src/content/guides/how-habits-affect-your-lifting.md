@@ -15,6 +15,10 @@ faqs:
     a: "Because the effect is lagged and invisible day to day. A poor night's sleep shows up as a flat session two days later, not immediately, so the cause and effect rarely line up in your memory. Tracking both alongside each other is what makes the connection visible."
   - q: "How does Havyu connect habits to lifting?"
     a: "Havyu logs your training and your recovery habits together, then surfaces the patterns in your own data — for example, when your strongest sessions follow your best-recovered weeks. It observes and explains the connection rather than prescribing a fixed plan."
+related:
+  - "how-recovery-drives-strength"
+  - "how-important-is-training-consistency"
+  - "how-many-days-a-week-to-lift"
 ---
 
 **Short answer: your daily habits don't just support your lifting — they largely determine it.** Training is the stimulus, but sleep, protein, hydration and consistency are what convert that stimulus into strength. Skimp on them and the same workout produces a smaller result; protect them and your lifts climb. The catch is that the connection is invisible in the moment — which is exactly the problem worth solving. The lifters who progress fastest aren't just training hard; they can *see* how their habits track with their results.

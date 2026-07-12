@@ -13,6 +13,10 @@ faqs:
     a: "No. That figure came from studies on fast-digesting protein eaten alone. With normal mixed meals, absorption is slower and there's no hard per-meal cap — aim for about 0.4 g/kg per meal across three to four meals."
   - q: "Do you need a protein shake right after training?"
     a: "Not specifically. Total daily protein matters far more than timing. The post-workout 'anabolic window' lasts hours, so a normal meal before or after training works fine."
+related:
+  - "how-recovery-drives-strength"
+  - "does-sleep-affect-muscle-growth"
+  - "how-many-days-a-week-to-lift"
 ---
 
 To build muscle, most lifters should eat **around 1.6 grams of protein per kilogram of bodyweight per day** — roughly 0.7 g per pound. For a 70 kg (154 lb) lifter that's about 110 g a day; for 90 kg (198 lb), about 145 g. There's a small additional benefit up to roughly **2.2 g/kg**, and almost none beyond that. Hit that range consistently, spread across your meals, and you've handled the part of nutrition that actually drives muscle growth.

@@ -15,6 +15,10 @@ faqs:
     a: "The simplest check is urine colour: pale straw means you're well hydrated, dark yellow means you're behind. Thirst, headaches, and feeling unusually weak or flat during a session are also common signs of under-hydration."
   - q: "Do I need electrolytes or is water enough?"
     a: "For most sessions under about 60-90 minutes, plain water is fine. If you sweat heavily, train in heat, or go long, adding electrolytes (especially sodium) helps you retain fluid and maintain performance. You don't need a sports drink for a normal gym workout."
+related:
+  - "how-recovery-drives-strength"
+  - "does-sleep-affect-muscle-growth"
+  - "how-much-protein-to-build-muscle"
 ---
 
 **Short answer: aim for roughly 3.7 litres of total water a day if you're a man and 2.7 litres if you're a woman, then add fluid around training.** Those totals, from the US National Academies, include the water in your food. The reason it matters for lifters specifically is that hydration directly affects performance: losing even 2% of your body weight in fluid is enough to measurably reduce strength and power. Hydration isn't a wellness afterthought — it's a training variable.
