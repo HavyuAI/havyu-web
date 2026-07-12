@@ -2,6 +2,7 @@
 // ✅ [FEATURE]: Landing page — green-dominant build from master copy.
 // Goes at: src/pages/index.astro
 import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro'; // ✅ [FEATURE]: sticky brand bar, extended to homepage (12 July)
 import Hero from '../components/Hero.astro';
 import { organizationSchema, webSiteSchema, appSchema } from '../data/schema';
 import NewsletterForm from '../components/react/NewsletterForm.tsx';
@@ -34,6 +35,7 @@ const description =
 ---
 
 <Base title={title} description={description} schema={schema}>
+  <SiteHeader />
   {/* ✅ [FEATURE]: Hero (green, Option B) */}
   <Hero />
 

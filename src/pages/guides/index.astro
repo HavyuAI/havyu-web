@@ -2,7 +2,7 @@
 // ✅ [FEATURE]: Guides hub — content-cluster landing page.
 // Goes at: src/pages/guides/index.astro
 import Base from '../../layouts/Base.astro';
-import GuideHeader from '../../components/GuideHeader.astro'; // ✅ [FEATURE]: sticky brand bar (Batch 6, F-19)
+import SiteHeader from '../../components/SiteHeader.astro'; // ✅ [FEATURE]: sticky brand bar (Batch 6, F-19)
 import { getCollection } from 'astro:content';
 
 const all = await getCollection('guides', ({ data }) => !data.draft);
@@ -32,7 +32,7 @@ const itemListSchema = {
 ---
 
 <Base title={title} description={description} schema={[itemListSchema]}>
-  <GuideHeader />
+  <SiteHeader />
   <header class="bg-forest-deep">
     <div class="mx-auto max-w-5xl px-6 py-16 md:py-20">
       <a href="/" class="inline-flex items-center gap-2.5">

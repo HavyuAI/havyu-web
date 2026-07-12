@@ -1,0 +1,55 @@
+---
+// ✅ [FEATURE]: SiteHeader — persistent sticky brand bar (Batch 6, F-19; extended
+// to the homepage per direct request, 12 July).
+// Goes at: src/components/SiteHeader.astro
+//
+// Problem: a visitor landing on a guide from search — or scrolling deep into
+// the homepage past the hero's own store buttons — has no persistent path
+// back to install. Guides only had a small "← All guides" text link; the
+// homepage's install CTAs live in the hero and the footer, with a long
+// scroll of content (Ecosystem, Intelligence, Programming, Audience,
+// Showcase, FAQ) in between where they're briefly out of reach.
+//
+// Used on: guides hub, every guide article, and the homepage.
+// NOT used on: privacy, terms (utility pages, low relevance for this CTA —
+// revisit if that turns out wrong).
+//
+// Design: reuses the site's existing forest-deep + white-pill tokens (no new
+// colors). On the homepage and the guides hub it sits flush above an
+// existing dark section (Hero's `.hero-bg` and the hub's `bg-forest-deep`
+// banner share the same #14401f base), so at scroll-top they read as one
+// seamless block — the slim bar only reveals itself as separate chrome once
+// you scroll past that section and it sticks. On guide articles (light
+// background, no dark band) it reads as clean top-of-page brand chrome, the
+// same treatment the rest of the site uses to bookend content.
+//
+// Known trade-off: on both the homepage and the guides hub, this bar's own
+// mark+wordmark sits directly above that page's own lockup (Hero's, or the
+// hub header's) — a brief visual repetition at first paint. Accepted as the
+// cost of the sticky bar's real job, which is what's still visible after
+// scrolling, not the first frame. Revisit if it reads as cluttered rather
+// than just brief.
+//
+// Pure CSS `sticky` — no JS, no hydration, zero bundle cost.
+//
+// CTA deliberately links to "/" (the full pitch + both store buttons on the
+// homepage itself), not straight to an app store — this keeps guide
+// visitors specifically routed through the sell step rather than skipping
+// to an install prompt; on the homepage itself "/" is just an anchor to the
+// top of the page they're already on, which is a harmless no-op scroll.
+---
+
+<div class="sticky top-0 z-40 bg-forest-deep">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+    <a href="/" class="inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80 rounded-md">
+      <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" class="h-7 w-auto" />
+      <span class="font-display text-sm font-bold text-white">Havyu AI</span>
+    </a>
+    <a
+      href="/"
+      class="rounded-full bg-white px-4 py-1.5 text-xs font-bold text-forest shadow-card transition hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
+    >
+      Get the app
+    </a>
+  </div>
+</div>
