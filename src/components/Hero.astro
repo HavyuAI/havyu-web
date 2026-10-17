@@ -1,97 +1,50 @@
 ---
-// ✅ [FEATURE]: Hero — green-dominant, animated CSS gradient (Option B, no three.js).
+// ✅ [FEATURE]: Hero — the brand field (Oct 2026 rebuild to match the app).
 // Goes at: src/components/Hero.astro
+// ✅ [FIX]: background is now the app's BRAND_FIELD gradient (entry screen +
+// paywall) via the `bg-field` utility, replacing the rotating radial blobs and
+// their hardcoded hexes. The page's one motion moment will be the hero loop
+// video (Batch F), so the background itself stays still.
+// ✅ [FIX]: purple kicker retired (AI wears the pillar colour) → Mint on green.
+// ✅ [FIX]: ALL-CAPS tracked labels → sentence case (DESIGN_SYSTEM §3).
 import StoreButtons from './StoreButtons.astro';
-const APP_STORE_URL = 'https://apps.apple.com/app/id6766615743';
+import { HAVYU_LINKS } from '../data/author';
 ---
 
-<header class="hero-bg">
-  <div class="relative z-10 mx-auto max-w-6xl px-6">
-    {/* Brand lockup: Havyu · AI Coach */}
-    <div class="flex items-center gap-3.5 pt-7">
-      {/* TODO: copy adaptive-icon.png → public/havyu-mark.png (white mark) */}
-      <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" class="h-12 w-auto" />
-      <span class="flex flex-col leading-none">
-        <span class="font-display text-2xl font-extrabold tracking-tight text-white">Havyu</span>{/* ✅ [FIX]: brand renamed (dropped "AI") */}
-        {/* ✅ [FIX]: was "Smart Lifting" — that's the training pillar's name, not
-            the brand's identity line. This lockup sits directly above the
-            strapline, which now carries the actual tagline. */}
-        <span class="mt-1.5 text-xs font-bold uppercase tracking-[0.22em] text-white/60">
-          AI Coach
-        </span>
-      </span>
-    </div>
-
-    {/* Hero content */}
-    <div class="pt-16 pb-20 md:pt-24 md:pb-28">
-      {/* ✅ [FIX]: locked tagline (11 July 2026) — was "The AI coach for lifting & lifestyle" */}
-      <p class="text-xs font-bold uppercase tracking-[0.22em] text-ai-bright">
-        AI weightlifting and recovery coach{/* ✅ [FIX]: new descriptor (Oct 2026) */}
-      </p>
+<header class="bg-field">
+  <div class="mx-auto max-w-6xl px-6">
+    {/* ✅ [FIX]: hero lockup removed — the sticky SiteHeader directly above already
+        carries the mark + wordmark, so the first frame no longer repeats it. */}
+    <div class="pt-14 pb-20 md:pt-24 md:pb-28">
+      <p class="text-base font-bold text-mint">AI weightlifting and recovery coach</p>
       <h1
-        class="mt-5 max-w-4xl font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl"
+        class="mt-4 max-w-4xl font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl"
       >
         Havyu connects the dots.<br class="hidden sm:block" /> You lift with absolute certainty.
       </h1>
+      {/* ✅ [FIX]: reworded (owner, Oct 2026) — was "…tells you what to do next — so
+          you walk in knowing exactly what to lift". Havyu observes; it tells you
+          WHEN to add weight, from your own performance and recovery. */}
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
-        Havyu is the AI Coach. It watches how you train and how you recover,
-        connects the two, and tells you what to do next — so you walk in knowing
-        exactly what to lift, and why.
+        Havyu watches how you train and how you recover, connects the two, and tells you
+        when to up the weight, based on your own performance and recovery.
       </p>
       <div class="mt-9">
-        <StoreButtons variant="onDark" appStoreUrl={APP_STORE_URL} />
+        <StoreButtons variant="onDark" appStoreUrl={HAVYU_LINKS.appStore} />
       </div>
 
-      {/* ✅ [FEATURE]: in-page section sub-nav (dwell time / jump links) */}
+      {/* In-page jump links (dwell time). ✅ [FIX]: dropped the "EXPLORE" caps label. */}
       <nav
         aria-label="Jump to section"
-        class="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/15 pt-6 text-sm font-semibold text-white/70"
+        class="mt-12 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-white/15 pt-6 text-sm font-semibold text-white/75"
       >
-        <span class="text-xs font-bold uppercase tracking-[0.18em] text-white/55">Explore</span>
         <a href="#ecosystem" class="transition hover:text-white">Ecosystem</a>
         <a href="#intelligence" class="transition hover:text-white">Intelligence</a>
         <a href="#see-it" class="transition hover:text-white">See it</a>
         <a href="#faq" class="transition hover:text-white">FAQ</a>
         <a href="/guides" class="transition hover:text-white">Guides</a>
+        <a href="/blog" class="transition hover:text-white">Blog</a>
       </nav>
     </div>
   </div>
 </header>
-
-<style>
-  .hero-bg {
-    position: relative;
-    overflow: hidden;
-    background-color: #14401f; /* forest-deep base */
-  }
-  .hero-bg::before {
-    content: '';
-    position: absolute;
-    inset: -50%;
-    z-index: 0;
-    background:
-      radial-gradient(circle at 30% 30%, #2e7d32 0%, transparent 45%),
-      radial-gradient(circle at 72% 32%, #1b5e20 0%, transparent 48%),
-      radial-gradient(circle at 50% 82%, #43a047 0%, transparent 52%);
-    animation: heroSpin 30s linear infinite;
-    will-change: transform;
-  }
-  .hero-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background: radial-gradient(120% 80% at 50% 0%, transparent 62%, rgba(0, 0, 0, 0.2) 100%);
-  }
-  @keyframes heroSpin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero-bg::before {
-      animation: none;
-    }
-  }
-</style>

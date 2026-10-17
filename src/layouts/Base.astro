@@ -45,7 +45,7 @@ const ogImageUrl = new URL(ogImage, site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#14401f" />
+    <meta name="theme-color" content="#2e7d32" /> {/* ✅ [FIX]: brand-field top (matches the sticky header) */}
 
     {/* ✅ [PERF]: preload critical font weights (LCP — hero headline + body) */}
     <link rel="preload" href={lsBlack} as="font" type="font/woff2" crossorigin />

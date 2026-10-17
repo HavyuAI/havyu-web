@@ -1,0 +1,15 @@
+---
+// ✅ [FEATURE]: Sparkle — the AI marker (DESIGN_SYSTEM §2 "AI marking").
+// AI has no colour of its own: the glyph takes the surrounding pillar colour via
+// `currentColor` (Mint on green, Latte on espresso, Leaf/Copper on light).
+// Replaces the purple "✦" text glyph. Decorative: always aria-hidden.
+interface Props {
+  class?: string;
+}
+const { class: className = 'h-5 w-5' } = Astro.props;
+---
+
+<svg viewBox="0 0 24 24" aria-hidden="true" class={className} fill="currentColor">
+  <path d="M10 3.5l1.6 5.1 5.1 1.6-5.1 1.6L10 16.9l-1.6-5.1-5.1-1.6 5.1-1.6z" />
+  <path d="M18 13.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" />
+</svg>

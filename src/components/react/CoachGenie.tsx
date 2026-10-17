@@ -1,6 +1,9 @@
 // ✅ [FEATURE]: CoachGenie — replica of the in-app "Havyu · AI Coach" Q&A surface.
 // Goes at: src/components/react/CoachGenie.tsx
 // Curated question deck → tap a question → text answer in the coach's voice.
+// ✅ [FIX] (Batch E): matches the app — sender line is the Havyu mark + "Coach"
+// (DESIGN_SYSTEM §6), AI marking in the Recovery green instead of purple, cream
+// bubbles from tokens (was a hardcoded hex), sentence-case label.
 // Answers reflect real cross-pillar patterns (sleep↔training, protein↔growth) and stay
 // observe-don't-prescribe: reference numbers, lead with positives, never prescribe loads.
 import { useState } from 'react';
@@ -51,25 +54,28 @@ export default function CoachGenie() {
   const active = selected !== null ? DECK[selected] : null;
 
   return (
-    <div className="mx-auto max-w-md overflow-hidden rounded-2xl border border-border border-l-4 border-l-ai bg-surface shadow-card">
+    <div className="mx-auto max-w-md overflow-hidden rounded-3xl border border-border bg-surface shadow-md">
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-4">
-        <span className="flex items-center gap-2 font-display font-bold text-ai">
-          <span aria-hidden="true">✦</span> Havyu · AI Coach
+        <span className="flex items-center gap-2 font-display font-bold text-espresso">
+          <img src="/apple-touch-icon.png" alt="" aria-hidden="true" width="24" height="24" className="h-6 w-6 rounded-md" />
+          Coach
         </span>
         <button
           type="button"
           onClick={() => setSelected(null)}
           aria-label="Back to questions"
-          className="text-espresso/40 transition hover:text-espresso/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-chestnut"
+          className="inline-flex h-11 w-11 items-center justify-center text-espresso/40 transition hover:text-espresso/70"
         >
-          ✕
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
         </button>
       </div>
 
       <div className="px-5 pb-5">
         {/* Greeting */}
-        <p className="mt-4 rounded-2xl bg-[#f6f1ec] px-4 py-3 leading-relaxed text-espresso">
+        <p className="mt-4 rounded-2xl bg-cream px-4 py-3 leading-relaxed text-espresso">
           Hey — I've been through your habits and recovery. Tap any question below and
           I'll break it down for you.
         </p>
@@ -78,18 +84,18 @@ export default function CoachGenie() {
           /* Answer view */
           <div className="mt-5" aria-live="polite">
             <p className="flex items-center gap-2 text-sm font-bold text-espresso">
-              <span className="text-ai" aria-hidden="true">
+              <span className="text-leaf" aria-hidden="true">
                 <BubbleIcon />
               </span>
               {active.q}
             </p>
-            <p className="mt-3 rounded-2xl bg-[#f6f1ec] px-4 py-3 leading-relaxed text-espresso/90">
+            <p className="mt-3 rounded-2xl bg-cream px-4 py-3 leading-relaxed text-espresso/90">
               {active.a}
             </p>
             <button
               type="button"
               onClick={() => setSelected(null)}
-              className="mt-4 text-sm font-bold text-ai transition hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-chestnut"
+              className="mt-4 text-sm font-bold text-leaf transition hover:underline"
             >
               ← Ask another
             </button>
@@ -97,7 +103,7 @@ export default function CoachGenie() {
         ) : (
           /* Question deck */
           <div className="mt-5">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-espresso/45">
+            <p className="text-sm font-bold text-chestnut">
               Ask your coach
             </p>
             <ul className="mt-1">
@@ -106,12 +112,12 @@ export default function CoachGenie() {
                   <button
                     type="button"
                     onClick={() => setSelected(i)}
-                    className="flex w-full items-center gap-3 py-3.5 text-left transition hover:text-ai focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-chestnut"
+                    className="group flex w-full items-center gap-3 py-3.5 text-left"
                   >
                     <span className="shrink-0 text-espresso/35" aria-hidden="true">
                       <BubbleIcon />
                     </span>
-                    <span className="font-display font-bold text-espresso">{item.q}</span>
+                    <span className="font-display font-bold text-espresso transition group-hover:text-leaf">{item.q}</span>
                   </button>
                 </li>
               ))}

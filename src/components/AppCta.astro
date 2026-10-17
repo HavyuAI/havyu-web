@@ -12,6 +12,7 @@ interface Props {
   playFirst?: boolean;
 }
 const { variant = 'full', playFirst = false } = Astro.props;
+// ✅ [FIX] (Batch E): no purple, no caps kicker, no "→" link suffix.
 ---
 
 {variant === 'compact' ? (
@@ -33,33 +34,25 @@ const { variant = 'full', playFirst = false } = Astro.props;
     <StoreButtons variant="onLight" appStoreUrl={HAVYU_LINKS.appStore} playFirst={playFirst} />
   </aside>
 ) : (
-  <aside class="mt-14 rounded-3xl border-2 border-ai/20 bg-ai/5 p-8">
+  /* ✅ [FIX]: closing card is the brand field (the app's entry/paywall gradient)
+     instead of a purple wash — heavy on green, white type, white store badges. */
+  <aside class="mt-14 overflow-hidden rounded-3xl bg-field p-8 text-white shadow-md">
     <div class="flex items-center gap-4">
-      <img
-        src="/apple-touch-icon.png"
-        alt="Havyu app icon"
-        width="56"
-        height="56"
-        loading="lazy"
-        class="h-14 w-14 shrink-0 rounded-2xl shadow-card"
-      />
+      <img src="/havyu-mark.png" alt="" aria-hidden="true" width="604" height="419" loading="lazy" class="h-10 w-auto" />
       <div class="min-w-0">
-        {/* ✅ [FIX]: brand line is now "Train. Recover. Overload." (was "…Progress.") */}
-        <p class="text-xs font-bold uppercase tracking-[0.16em] text-forest">Train. Recover. Overload.</p>
-        <p class="font-display text-lg font-extrabold leading-tight text-espresso">Havyu</p>
+        <p class="font-display text-2xl font-extrabold leading-tight text-white">Havyu</p>
+        <p class="text-sm font-bold text-mint">Train. Recover. Overload.</p>
       </div>
     </div>
-    <p class="mt-5 text-lg leading-relaxed text-espresso/80">
-      Havyu watches both sides of your progress — your training and your recovery — and
-      connects the dots, so you can see the patterns behind your strength.
+    <p class="mt-5 text-lg leading-relaxed text-white/85">
+      Havyu watches both sides of your progress, your training and your recovery, and
+      tells you when you're ready to add weight.
     </p>
     <div class="mt-6">
-      <StoreButtons variant="onLight" appStoreUrl={HAVYU_LINKS.appStore} playFirst={playFirst} />
+      <StoreButtons variant="onDark" appStoreUrl={HAVYU_LINKS.appStore} playFirst={playFirst} />
     </div>
-    <a href="/" class="mt-4 inline-block text-sm font-semibold text-forest transition hover:text-forest-deep">
-      How Havyu works →
+    <a href="/" class="mt-5 inline-block text-sm font-semibold text-white underline underline-offset-4 transition hover:text-mint">
+      See how Havyu works
     </a>
-    {/* ✅ [FIX]: new descriptor — "AI weightlifting and recovery coach" */}
-    <p class="mt-4 text-sm text-espresso/50">— Havyu, AI weightlifting and recovery coach.</p>
   </aside>
 )}

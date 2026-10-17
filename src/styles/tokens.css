@@ -1,7 +1,14 @@
-/* ✅ [FEATURE]: Havyu AI design tokens — web mirror of DESIGN_SYSTEM.md.
-   Single source of truth for the marketing site's palette + type.
-   Web and app must read as ONE brand. #7C4DFF is AI-ONLY.
-   Import once from the base layout (`import '../styles/tokens.css'`). */
+/* ✅ [FEATURE]: Havyu design tokens — web mirror of the app's constants/theme.ts
+   (light mode) and docs/DESIGN_SYSTEM.md. Web and app must read as ONE brand.
+   Single source of truth for the marketing site's palette, radius, shadow + type.
+   Import once from the base layout (`import '../styles/tokens.css'`).
+
+   ✅ [FIX] (Oct 2026): rebuilt from theme.ts —
+   • Purple retired (owner decision: AI wears the pillar colour). No ai tokens.
+   • Camel "iron" retired (theme.ts: fails AA, reads as a second gold).
+   • Page background is the app's cream, not a green-tinted off-white.
+   • Greens: Deep Leaf is the one Recovery green; the brand field is the
+     app's entry/paywall gradient (BRAND_FIELD). */
 
 @import "tailwindcss";
 
@@ -13,34 +20,51 @@
 
 /* ── Design tokens (Tailwind v4 @theme → generates utilities) ── */
 @theme {
-  /* — Latte & Espresso (Weightlifting pillar / warm accent) — */
-  --color-chestnut: #6d4c41;
-  --color-iron: #c19a6b;                            /* app Lift-tab caramel (Pillar 1 fill) */
-  --color-latte: #d7ccc8;
-  --color-espresso: #3e2723;
-  --color-espresso-faded: rgba(109, 76, 65, 0.6);
+  /* — Training pillar (Gym palette v2: GYM_LIGHT) — */
+  --color-espresso: #3e2723;                        /* text + FILLED actions/surfaces only */
+  --color-chestnut: #6d4c41;                        /* headings, small emphasis text (7.6:1) */
+  --color-espresso-faded: rgba(109, 76, 65, 0.6);   /* gym.headingMuted */
+  --color-subtext: #8d6e63;                         /* theme.subtext */
+  --color-copper: #a86e3f;                          /* icons, rails, ≥19px numerals — never small text */
+  --color-latte: #d7ccc8;                           /* kicker on espresso (8.8:1) */
+  --color-live: #ffb300;                            /* Live Gold — "happening now" ONLY */
 
-  /* — Leaf & Growth (DOMINANT brand green) — */
-  --color-forest: #2e7d32;                         /* primary green / brand */
-  --color-forest-deep: #14401f;                    /* hero base, dark band, footer */
-  --color-forest-bright: #43a047;                  /* gradient highlight */
-  --color-success: #4caf50;                        /* streaks / wins */
+  /* — Recovery pillar + brand (HABIT_HERO / BRAND_FIELD) — */
+  --color-leaf: #1b5e20;                            /* Deep Leaf — the one Recovery green (white 7.9:1) */
+  --color-mint: #c8e6c9;                            /* kicker / AI glyph on green (5.9:1) */
+  --color-field-top: #2e7d32;                       /* brand field — white 5.13:1 */
+  --color-field-mid: #256428;                       /* brand field — white 7.16:1 */
+  --color-field-bottom: #17421b;                    /* brand field — white 11.47:1 */
+  --color-success: #4caf50;                         /* streaks / wins */
 
-  /* — AI (RESERVED — never use for generic UI) — */
-  --color-ai: #7c4dff;                             /* AI purple — on LIGHT surfaces */
-  --color-ai-bright: #a78bfa;                      /* AI purple — on DARK/green surfaces (legible) */
+  /* Aliases kept so existing utilities resolve to the new system:
+     forest → Deep Leaf (text + tints), forest-deep → brand-field bottom (dark bands). */
+  --color-forest: #1b5e20;
+  --color-forest-deep: #17421b;
 
-  /* — Surfaces — */
-  --color-surface: #ffffff;
-  --color-surface-warm: #f3f7f2;                   /* faintly green-tinted off-white page bg */
-  --color-border: rgba(109, 76, 65, 0.12);
+  /* — Surfaces (THEME.light) — */
+  --color-cream: #f3f0e6;                           /* theme.bg — page background */
+  --color-surface: #ffffff;                         /* theme.card */
+  --color-surface-warm: #f3f0e6;                    /* alias of cream (existing utilities) */
+  --color-input: #fcfbf8;                           /* theme.inputBg — tiles flush on a card */
+  --color-border: #e8e0d5;                          /* theme.border */
+  --color-night: #1a1614;                           /* theme.dark.bg — device bezels only */
+
+  /* — Radius (RADIUS: 8 / 12 / 18 / 24) — rounded-lg, -xl, -2xl, -3xl — */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 18px;
+  --radius-3xl: 24px;
 
   /* — Type — */
   --font-display: "League Spartan", system-ui, sans-serif;
   --font-body: "League Spartan", system-ui, sans-serif;
 
-  /* — Elevation (soft, diffused — never harsh/tight) — */
+  /* — Elevation (SHADOWS + DESIGN_SYSTEM §5 standard card) — soft, never harsh — */
   --shadow-card: 0 4px 8px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* ── Base layer ──
@@ -55,7 +79,7 @@
   html {
     font-family: var(--font-body);
     color: var(--color-espresso);
-    background: var(--color-surface-warm);
+    background: var(--color-cream);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
@@ -77,4 +101,22 @@
     font-weight: 700;
     letter-spacing: -0.01em;
   }
+
+  /* ✅ [FEATURE]: visible keyboard focus everywhere, in the brand green. */
+  :focus-visible {
+    outline: 2px solid var(--color-leaf);
+    outline-offset: 2px;
+  }
+}
+
+/* ✅ [FEATURE]: the brand field — the app's entry-screen / paywall gradient
+   (BRAND_FIELD: stops 0 / 0.55 / 1, from (0.15, 0) to (0.85, 1) ≈ 160deg). */
+@utility bg-field {
+  background-color: var(--color-field-mid);
+  background-image: linear-gradient(
+    160deg,
+    var(--color-field-top) 0%,
+    var(--color-field-mid) 55%,
+    var(--color-field-bottom) 100%
+  );
 }

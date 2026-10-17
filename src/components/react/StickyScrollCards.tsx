@@ -38,12 +38,14 @@ const CARDS: Card[] = [
   },
 ];
 
+// ✅ [FIX] (Batch E): purple + hardcoded hex swapped for tokens. NOTE: this island
+// has no importer today (unused); kept non-destructively.
 const ROTATIONS = [-1.5, 1.2, 0];
 
 const STYLES: Record<Accent, { bg: string; kicker: string; title: string; body: string }> = {
-  espresso: { bg: 'bg-[#f6f1ec]', kicker: 'text-chestnut', title: 'text-espresso', body: 'text-espresso/70' },
-  green: { bg: 'bg-[#eef5ee]', kicker: 'text-forest', title: 'text-espresso', body: 'text-espresso/70' },
-  ai: { bg: 'bg-forest-deep', kicker: 'text-ai-bright', title: 'text-white', body: 'text-white/75' },
+  espresso: { bg: 'bg-cream', kicker: 'text-chestnut', title: 'text-espresso', body: 'text-espresso/70' },
+  green: { bg: 'bg-surface', kicker: 'text-forest', title: 'text-espresso', body: 'text-espresso/70' },
+  ai: { bg: 'bg-forest-deep', kicker: 'text-mint', title: 'text-white', body: 'text-white/75' },
 };
 
 const CARD_SHADOW =
@@ -61,7 +63,7 @@ function CardFace({ card }: { card: Card }) {
           {card.kicker}
         </span>
         {card.accent === 'ai' && (
-          <span className="text-xl text-ai-bright" aria-hidden="true">
+          <span className="text-xl text-mint" aria-hidden="true">
             ✦
           </span>
         )}

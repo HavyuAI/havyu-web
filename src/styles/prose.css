@@ -75,6 +75,9 @@
    squashing; first column reads as the row label. */
 .guide-prose table {
   display: block;
+  /* ✅ [FIX]: hug the content so the header band never stops short of the
+     border; wide tables still cap at the column and scroll sideways. */
+  width: max-content;
   max-width: 100%;
   overflow-x: auto;
   border-collapse: collapse;

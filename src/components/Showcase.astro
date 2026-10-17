@@ -3,13 +3,15 @@
 // Goes at: src/components/Showcase.astro
 // Assets: copy the four .webp files into  public/screenshots/
 // Carousel = native CSS scroll-snap (touch swipe) + arrow buttons (desktop). No deps.
+// ✅ [FIX] (Batch E): kicker tone is the PILLAR colour — 'train' = Chestnut,
+// 'recover' = Deep Leaf. The purple 'ai' tone is retired (AI wears the pillar colour).
 const shots = [
   {
     src: '/screenshots/screenshot-genie.webp',
     w: 600,
     h: 1269,
     kicker: 'Tap-to-summon coach',
-    tone: 'ai',
+    tone: 'train',
     caption: 'Your coach, one tap away — mid-set.',
   },
   {
@@ -17,7 +19,7 @@ const shots = [
     w: 600,
     h: 1269,
     kicker: 'AI Coach',
-    tone: 'ai',
+    tone: 'train',
     caption: 'Weekly read-outs and pattern insights, in plain language.',
   },
   {
@@ -25,7 +27,7 @@ const shots = [
     w: 600,
     h: 1234,
     kicker: 'AI Routine Builder',
-    tone: 'ai',
+    tone: 'train',
     caption: 'Spin up a hyper-tailored routine on a single screen.',
   },
   {
@@ -33,7 +35,7 @@ const shots = [
     w: 600,
     h: 1261,
     kicker: 'Live session logging',
-    tone: 'forest',
+    tone: 'recover',
     caption: 'Log a working set in two taps, mid-workout.',
   },
   {
@@ -41,7 +43,7 @@ const shots = [
     w: 600,
     h: 1261,
     kicker: 'Voice logging',
-    tone: 'ai',
+    tone: 'train',
     caption: 'Call out your set — Havyu logs it hands-free.',
   },
   {
@@ -49,7 +51,7 @@ const shots = [
     w: 600,
     h: 1269,
     kicker: 'The “Have You…?” deck',
-    tone: 'forest',
+    tone: 'recover',
     caption: 'Flick through recovery habits in seconds.',
   },
   {
@@ -57,7 +59,7 @@ const shots = [
     w: 600,
     h: 1261,
     kicker: 'Weekly overview',
-    tone: 'forest',
+    tone: 'recover',
     caption: 'Your week read back — what moved the needle.',
   },
   {
@@ -65,7 +67,7 @@ const shots = [
     w: 600,
     h: 1261,
     kicker: 'Monthly coverage',
-    tone: 'forest',
+    tone: 'recover',
     caption: 'A month of consistency, at a glance.',
   },
 ];
@@ -79,7 +81,7 @@ const shots = [
           See it in action.
         </h2>
         <p class="mt-4 max-w-2xl leading-relaxed text-espresso/70">
-          Real screens from the app — the AI surfaces that read your training, the
+          Real screens from the app: the coach surfaces that read your training, the
           logging flow built for the gym floor, and your daily, weekly and monthly
           progress.
         </p>
@@ -130,8 +132,8 @@ const shots = [
             <figcaption class="mt-5 text-center">
               <p
                 class:list={[
-                  'text-xs font-bold uppercase tracking-[0.14em]',
-                  s.tone === 'ai' ? 'text-ai' : 'text-forest',
+                  'text-sm font-bold',
+                  s.tone === 'train' ? 'text-chestnut' : 'text-leaf',
                 ]}
               >
                 {s.kicker}
@@ -184,7 +186,7 @@ const shots = [
   }
   .hv-arrow:hover {
     transform: translateY(-1px);
-    background: #fff;
+    background: var(--color-surface);
   }
   .hv-arrow:active {
     transform: translateY(0);
@@ -197,9 +199,10 @@ const shots = [
     max-width: 270px;
     padding: 22px 11px;
     border-radius: 2.6rem;
-    background: linear-gradient(150deg, #2c2521 0%, #18120f 100%);
+    /* ✅ [FIX]: bezel from tokens (Espresso → app dark bg), was hardcoded hex */
+    background: linear-gradient(150deg, var(--color-espresso) 0%, var(--color-night) 100%);
     box-shadow:
-      0 18px 40px rgba(62, 39, 35, 0.28),
+      0 18px 40px color-mix(in srgb, var(--color-espresso) 28%, transparent),
       inset 0 0 0 1.5px rgba(255, 255, 255, 0.06);
   }
   .device::before,
@@ -207,7 +210,7 @@ const shots = [
     content: '';
     position: absolute;
     border-radius: 9999px;
-    background: linear-gradient(180deg, #3a322e, #221b18);
+    background: linear-gradient(180deg, var(--color-espresso), var(--color-night));
   }
   .device::before {
     right: -2px;
@@ -225,7 +228,7 @@ const shots = [
     display: block;
     width: 100%;
     border-radius: 1.55rem;
-    background: #000;
+    background: var(--color-night);
   }
   .device-speaker {
     position: absolute;

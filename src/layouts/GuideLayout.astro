@@ -137,7 +137,7 @@ const ogAlt = heroImageAlt ?? 'Havyu — AI weightlifting and recovery coach'; /
       {pillar && (
         // ✅ [FIX]: was bg-ai/10 text-ai — this badge marks reading order, not
         // AI-generated content, so it shouldn't use the AI-reserved purple token.
-        <span class="rounded-full bg-chestnut/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-chestnut">
+        <span class="rounded-full bg-leaf/10 px-3 py-1 text-xs font-bold text-leaf">{/* ✅ [FIX]: sentence case (DESIGN_SYSTEM §3) */}
           Start here
         </span>
       )}
@@ -153,13 +153,11 @@ const ogAlt = heroImageAlt ?? 'Havyu — AI weightlifting and recovery coach'; /
     </h1>
     <p class="mt-4 text-lg leading-relaxed text-espresso/70">{description}</p>
 
-    <div class="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-espresso/55">
-      <span class="font-semibold text-espresso/75">{AUTHOR.name}</span>
-      <span aria-hidden="true">·</span>
-      <span>Developer of Havyu</span>
-      <span aria-hidden="true">·</span>
-      <time datetime={modified}>{dateLabel}</time>
-    </div>
+    {/* ✅ [FIX]: byline as a plain sentence (was a middle-dot meta string) */}
+    <p class="mt-5 text-sm text-espresso/60">
+      By <span class="font-semibold text-espresso/80">{AUTHOR.name}</span>, developer of Havyu.
+      <time datetime={modified}>{dateLabel}</time>.
+    </p>
 
     {heroImage && (
       <img
