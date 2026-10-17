@@ -1,8 +1,8 @@
 ---
 title: "Havyu vs SensAI (2026): which AI lifting coach should you use?"
 displayTitle: "Havyu vs SensAI: which AI lifting coach should you use in 2026?"
-description: "Havyu and SensAI are both AI fitness coaches. Havyu runs on iPhone and Android, has a free tier with a built-in coach, and costs $39.99 a year. SensAI is iPhone-only and trial-only at $69.99."
-shortAnswer: "Choose Havyu. It's the AI weightlifting and recovery coach that works on both iPhone and Android, includes a free tier with an on-device coach, and costs $39.99 a year against SensAI's $69.99. SensAI is iPhone-only and has no free tier."
+description: "Havyu is the progressive overload coach: it tells you when to add weight, from your own lifts and recovery, on iPhone and Android, free to start. SensAI is iPhone-only, trial-only, and costs 75% more."
+shortAnswer: "Choose Havyu. It's built around progressive overload, the thing that actually grows muscle, and tells you when each lift is ready to go up from your own training and recovery. It runs on iPhone and Android, is free to start, and costs $39.99 a year. SensAI is iPhone-only, has no free tier, and costs $69.99."
 category: "Comparisons"
 pubDate: 2026-10-17
 factsChecked: 2026-10-17
@@ -22,9 +22,9 @@ related: ["sensai-alternatives-android", "best-ai-workout-apps-android"]
 relatedGuides: ["how-recovery-drives-strength", "how-habits-affect-your-lifting"]
 ---
 
-Havyu and SensAI both call themselves AI fitness coaches, but they're built for different lifters. **Havyu is an AI weightlifting and recovery coach for iPhone and Android.** It tracks your training and your daily recovery in one app, then tells you when you're ready to add weight, from your own numbers. SensAI is an iPhone-only app whose chat coach generates and rewrites a training plan for you.
+Muscle grows when you lift a little more than last time, recover, and repeat. That's progressive overload, and it's the one thing every serious lifter is chasing. **Havyu is built around it.** It's an AI weightlifting and recovery coach that reads every set you log and every night of sleep you record, then tells you the moment a lift is ready to go up.
 
-If you're on Android, the decision is already made: SensAI doesn't have an Android app.[^1][^2] If you're on iPhone, the difference that matters is how the coach works, and what it costs to find out.
+SensAI takes a different route. It's a general fitness chat app that writes a plan for you and asks you to follow it. It's also iPhone-only: if you're on Android, SensAI simply isn't an option.[^1][^2] On iPhone, the question is whether you want to follow someone else's plan, or know exactly where your own progress stands.
 
 ## What's the difference between Havyu and SensAI?
 
@@ -50,7 +50,7 @@ The recovery side is built for speed. The daily **“Have you…?”** check-in 
 
 ## How does SensAI's coach work?
 
-SensAI is a conversational coach built on a large language model. You describe your goals, equipment and schedule, and it generates a plan and adjusts it week to week, drawing on heart-rate variability, sleep and resting heart rate from Apple Health.[^1] It's an iPhone, Apple Watch and Apple Health product throughout.
+SensAI is a chat app. You describe your goals and schedule, it generates a plan, and it rewrites that plan each week.[^1] The trade-off is that you're following instructions rather than seeing what's working in your own lifts. Its recovery read leans on wearable data from Apple Health, so by SensAI's own account it does its best work only if you wear an Apple Watch or similar device to bed.[^2] And it's locked to the Apple ecosystem: iPhone, Apple Watch and Apple Health only.
 
 ## Is Havyu cheaper than SensAI?
 
@@ -59,7 +59,7 @@ Yes, on every plan:
 - **Havyu Pro** is **$4.99 a month** (with a 14-day free trial) or **$39.99 a year**.
 - **SensAI Premium** is **$6.99 a month** or **$69.99 a year**.[^1]
 
-Over a year, SensAI costs **75% more**. The bigger gap is the free tier. Havyu's free version is the full product at lower resolution: logging, the “Have you…?” check-in, charts, history, scheduling and an on-device coach all cost nothing. SensAI has a 7-day trial and nothing after it.[^1]
+Over a year, SensAI costs **75% more**, and its free access ends after seven days. The bigger gap is the free tier. Havyu's free version is the full product at lower resolution: logging, the “Have you…?” check-in, charts, history, scheduling and an on-device coach all cost nothing. SensAI has a 7-day trial and nothing after it.[^1]
 
 ## Which one works on Android?
 
@@ -75,9 +75,9 @@ Havyu is local-first: your workouts and habits are stored on your phone, not in 
 
 **Choose Havyu if** you want a coach that tells you when to add weight from your own lifts and recovery, you want to try it free with no time limit, you're on Android, or you'd rather pay $39.99 a year than $69.99.
 
-**SensAI suits** iPhone users who want a chat coach to write their week for them, and who are happy to pay from day eight.
+**SensAI is for** iPhone users who'd rather be handed a plan than understand their progress, and who are ready to pay once a seven-day trial runs out.
 
-For most lifters, the answer is Havyu: it's on both platforms, it's free to start, and it's built around the one question that drives progress: are you ready to add weight today?
+For lifters who want to build muscle, the answer is Havyu. Progressive overload is the engine of muscle growth, and Havyu is the coach built to drive it: every set and every recovery habit feeds one call, made from your own data. Are you ready to add weight today?
 
 [^1]: SensAI. “SensAI: Fitness Sensei.” Apple App Store listing (US): iOS 26 or later; SensAI Premium Monthly $6.99, Yearly $69.99; 7-day free access. Accessed 17 October 2026. <https://apps.apple.com/app/id6738963099>
 [^2]: SensAI. “SensAI review 2026.” SensAI blog, updated 4 October 2026 (states there is no Android app). <https://www.sensai.fit/blog/sensai-review-2026>

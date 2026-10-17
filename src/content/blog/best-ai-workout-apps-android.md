@@ -22,7 +22,7 @@ related: ["sensai-alternatives-android", "havyu-vs-sensai"]
 relatedGuides: ["how-recovery-drives-strength", "how-many-days-a-week-to-lift"]
 ---
 
-Most “AI workout apps” do one of two things: they generate a workout for you, or they log what you did and leave the thinking to you. The best AI workout app for an Android lifter does neither. It reads your own training *and* your recovery, and tells you the thing that actually drives progress: **when you're ready to add weight**.
+Most “AI workout apps” do one of two things: they generate a generic workout, or they log what you did and leave the thinking to you. Neither drives muscle growth on its own. What builds muscle is progressive overload: adding weight when your body is ready for it. The best AI workout app reads your own training *and* your recovery, and tells you exactly that: **when you're ready to add weight**.
 
 That's why **Havyu** tops this list. Below is the full shortlist, judged on what a lifter needs from an AI coach on Android.
 
@@ -46,9 +46,9 @@ That's why **Havyu** tops this list. Below is the full shortlist, judged on what
 
 Havyu's figures are from its [service description](/service); Fitbod's from its App Store listing and help centre.[^1][^2]
 
-## 1. Havyu: best overall AI coach for Android
+## 1. Havyu: the progressive overload coach
 
-**Havyu is an AI weightlifting and recovery coach** that treats your training and your recovery as one system. It's the only app here that does both.
+**Havyu is an AI weightlifting and recovery coach**, and the only app here that treats training and recovery as one system. That's what makes it the most complete coach for progressive overload and muscle growth on Android.
 
 - **Live overload coaching.** During a session, each lift gets a clear call (increase, maintain or ease back) from how it's been moving and how recovered you are. Before you train, Today's focus tells you what has stalled and how last night should shape the session.
 - **The “Have you…?” check-in.** Recovery logging as a deck of questions: slept seven hours? Hit your protein? Drunk enough water? Answer and the card flies away. A full day takes under a minute, and Perfect Day streaks reward the habit.
@@ -61,17 +61,17 @@ Havyu's figures are from its [service description](/service); Fitbod's from its 
 
 **Best for:** anyone who wants an AI coach rather than a workout generator, and anyone whose progress depends on sleep, food and consistency (which is everyone).
 
-## 2. Fitbod: a workout generator
+## 2. Fitbod: a workout generator, at a premium price
 
-Fitbod is on Google Play and builds each session for you from an algorithm.[^4] It doesn't track recovery habits, there's no free tier, and at up to $95.99 a year it costs more than twice as much as Havyu Pro.[^1] It suits people who want to be told exactly which exercises to do and don't mind paying for that.
+Fitbod is on Google Play and builds each session for you from an algorithm.[^4] It's blind to your recovery (no sleep, protein or water tracking), so it can't tell a good day to push from a bad one. There's no free tier, and at up to $95.99 a year it costs more than twice as much as Havyu Pro.[^1]
 
 ## 3. Hevy: a workout logger with an optional AI trainer
 
-Hevy is a popular logger on Google Play with a social feed.[^5] Its AI trainer is a Pro-only add-on,[^6] and it doesn't read your recovery. Good for recording sets; it won't tell you why a session went well or badly.
+Hevy is a logger on Google Play with a social feed.[^5] Its AI trainer is locked behind Pro,[^6] and it never reads your recovery, so it can record a bad session but can't tell you why it happened.
 
 ## 4. Strong: a classic logger, no AI
 
-Strong is a clean, fast logger on Google Play.[^7] It has no AI coach and no recovery tracking. Fine if you only want a notebook; not an AI workout app.
+Strong is a logger on Google Play.[^7] There's no AI coach and no recovery tracking: it's a digital notebook, not an AI workout app.
 
 ## Which AI workout app should you download?
 
