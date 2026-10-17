@@ -26,6 +26,8 @@
 * [Havyu vs SensAI (2026)](https://havyu.org/blog/havyu-vs-sensai)
 * [SensAI alternatives for Android (2026)](https://havyu.org/blog/sensai-alternatives-android)
 * [Best AI workout apps for Android (2026)](https://havyu.org/blog/best-ai-workout-apps-android)
+* [The “Have you…?” check-in: recovery tracking in under a minute](https://havyu.org/blog/have-you-check-in)
+* [The daily recovery checklist for lifters](https://havyu.org/blog/daily-recovery-checklist-lifters)
 
 ## What Havyu does
 
