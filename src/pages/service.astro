@@ -1,0 +1,110 @@
+---
+// ✅ [FEATURE]: /service — canonical, plain-language service description for
+// AI agents, reviewers and journalists (AEO). Mirrors public/llms.txt; keep the
+// two in step. Facts only — every claim here must be true of the live app.
+// Goes at: src/pages/service.astro
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { HAVYU_LINKS } from '../data/author';
+import { appSchema } from '../data/schema';
+
+const site = Astro.site ?? new URL('https://havyu.org');
+const title = 'Havyu service description — AI weightlifting and recovery coach';
+const description =
+  'What Havyu is, what it does, what it costs and how it handles data: an AI weightlifting and recovery coach for iPhone and Android.';
+
+const sections: { h: string; items: string[] }[] = [
+  {
+    h: 'Product',
+    items: [
+      'Native mobile app for iPhone (App Store) and Android (Google Play).',
+      'Two pillars in one app: Training (Smart Lifting) and Recovery (Habits), read together by one coach.',
+      'Sign-in with Apple or Google is optional for logging; it is required for AI features.',
+    ],
+  },
+  {
+    h: 'Training',
+    items: [
+      'Live set logging built for the gym floor, including supersets, RPE and routines.',
+      'Multi-week scheduler, exercise library with demonstrations and muscle maps, kg or lbs.',
+      'Voice logging: on-device parsing on the free tier; AI parsing of multi-exercise batches and shorthand on Pro.',
+    ],
+  },
+  {
+    h: 'Recovery',
+    items: [
+      'A daily “Have you…?” check-in deck: protein, water, sleep, steps, mood, caffeine, alcohol, meals and body weight.',
+      'Perfect Day streaks, weekly and monthly views, and personal habit goals.',
+      'Optional Apple Health or Health Connect connection: reads steps and body weight, writes completed strength sessions.',
+    ],
+  },
+  {
+    h: 'Coaching behaviour',
+    items: [
+      'The coach observes and explains the lifter’s own data — strength trends, progression stalls, and how recovery lines up with performance.',
+      'It does not prescribe sets, reps or loads, and does not invent programmes.',
+      'Free tier: an on-device coach using local analysis. Pro: an AI layer (Google Gemini) adds pre-workout briefings, session reviews, weekly reads and curated coach questions.',
+    ],
+  },
+  {
+    h: 'Data and privacy',
+    items: [
+      'Workout and habit data is stored on the device. There is no cloud copy.',
+      'AI coaching requires explicit, versioned consent; the consent screen lists exactly what is sent. Name and email are never sent with it.',
+      'Data is not sold, not used for advertising, and not used to train AI models.',
+      'Imports (Strong, Hevy, FitNotes, spreadsheets, Havyu backups) are processed on-device and can be undone.',
+    ],
+  },
+  {
+    h: 'Pricing',
+    items: [
+      'Free: logging, habits, charts, history, scheduling, the on-device coach and limited AI routine builds.',
+      'Havyu Pro: $4.99 per month (14-day free trial) or $39.99 per year, USD. Local store pricing varies.',
+    ],
+  },
+];
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: new URL('/service', site).href,
+  about: { '@type': 'MobileApplication', name: 'Havyu' },
+};
+---
+
+<Base title={title} description={description} schema={[webPageSchema, appSchema(site.origin)]}>
+  <SiteHeader />
+  <article class="mx-auto max-w-3xl px-6 py-12 md:py-16">
+    <p class="text-sm font-bold text-forest">Service description</p>
+    <h1 class="mt-3 font-display text-3xl font-black leading-tight tracking-tight text-espresso md:text-4xl">
+      Havyu: AI weightlifting and recovery coach
+    </h1>
+    <p class="mt-4 text-lg leading-relaxed text-espresso/70">
+      Havyu tracks strength training and daily recovery in one app, and its coach explains the
+      patterns in your own data. This page is the plain-language reference for what the app does
+      today. A machine-readable summary lives at <a href="/llms.txt" class="font-semibold text-forest underline underline-offset-2">/llms.txt</a>.
+    </p>
+
+    <div class="mt-10 space-y-10">
+      {sections.map((s) => (
+        <section>
+          <h2 class="font-display text-2xl font-extrabold tracking-tight text-espresso">{s.h}</h2>
+          <ul class="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-espresso/80">
+            {s.items.map((i) => <li>{i}</li>)}
+          </ul>
+        </section>
+      ))}
+
+      <section>
+        <h2 class="font-display text-2xl font-extrabold tracking-tight text-espresso">Download and contact</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-espresso/80">
+          <li><a class="text-forest underline underline-offset-2" href={HAVYU_LINKS.appStore}>App Store</a> · <a class="text-forest underline underline-offset-2" href={HAVYU_LINKS.googlePlay}>Google Play</a></li>
+          <li>Support: <a class="text-forest underline underline-offset-2" href="mailto:havyulabs@gmail.com">havyulabs@gmail.com</a></li>
+          <li><a class="text-forest underline underline-offset-2" href="/privacy">Privacy policy</a> · <a class="text-forest underline underline-offset-2" href="/terms">Terms of use</a></li>
+        </ul>
+      </section>
+    </div>
+  </article>
+</Base>

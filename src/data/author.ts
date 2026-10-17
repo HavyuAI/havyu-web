@@ -13,7 +13,7 @@ export const AUTHOR = {
   // Short line for the footer.
   tagline: 'Developer, fitness & AI enthusiast.',
   // Full sentence for the Person schema description.
-  bio: 'James Hainsworth is the solo developer behind Havyu AI — a developer and a fitness and AI enthusiast who built Havyu to connect strength training and daily recovery through an AI coach that surfaces the patterns between how you live and how you lift.',
+  bio: 'James Hainsworth is the solo developer behind Havyu — a developer and a fitness and AI enthusiast who built Havyu to connect strength training and daily recovery through an AI coach that surfaces the patterns between how you live and how you lift.',
   // Personal profile(s) → Person.sameAs
   instagram: 'https://www.instagram.com/jhainsworth_',
 };
@@ -21,6 +21,8 @@ export const AUTHOR = {
 // Havyu brand channels → Organization.sameAs (set in index.astro)
 export const HAVYU_LINKS = {
   appStore: 'https://apps.apple.com/app/id6766615743',
+  // ✅ [FEATURE]: Android listing (used by /service and future CTAs).
+  googlePlay: 'https://play.google.com/store/apps/details?id=com.havyu.app',
   tiktok: 'https://www.tiktok.com/@havyu.ai',
   github: 'https://github.com/HavyuAI',
 };
@@ -39,7 +41,7 @@ export function personSchema(origin: string): Record<string, unknown> {
     url: origin,
     worksFor: {
       '@type': 'Organization',
-      name: 'Havyu AI',
+      name: 'Havyu', // ✅ [FIX]: brand renamed
       url: origin,
     },
     sameAs: [AUTHOR.instagram],

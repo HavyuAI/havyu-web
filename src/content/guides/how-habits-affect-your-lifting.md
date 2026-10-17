@@ -3,7 +3,7 @@ title: "How do your daily habits affect your lifting?"
 description: "Your training and your daily habits aren't separate. Sleep, protein, hydration and consistency decide whether a workout becomes progress. Here's how the two pillars connect — and why seeing the link is the real edge."
 pubDate: 2026-06-27
 heroImage: "/guides/habits-and-lifts-connection.webp"
-heroImageAlt: "A loaded barbell beside a recovery breakfast and water bottle, with the Havyu AI Coach on a phone connecting last night's recovery to a strength increase."
+heroImageAlt: "A loaded barbell beside a recovery breakfast and water bottle, with the Havyu coach on a phone connecting last night's recovery to a strength increase."
 tags: ["Habits", "Recovery", "Coaching"]
 pillar: false
 faqs:
