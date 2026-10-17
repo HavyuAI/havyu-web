@@ -15,22 +15,47 @@ import { HAVYU_LINKS } from '../data/author';
   <div class="mx-auto max-w-6xl px-6">
     {/* ✅ [FIX]: hero lockup removed — the sticky SiteHeader directly above already
         carries the mark + wordmark, so the first frame no longer repeats it. */}
-    <div class="pt-14 pb-20 md:pt-24 md:pb-28">
-      <p class="text-base font-bold text-mint">AI weightlifting and recovery coach</p>
-      <h1
-        class="mt-4 max-w-4xl font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl"
-      >
-        Havyu connects the dots.<br class="hidden sm:block" /> You lift with absolute certainty.
-      </h1>
-      {/* ✅ [FIX]: reworded (owner, Oct 2026) — was "…tells you what to do next — so
-          you walk in knowing exactly what to lift". Havyu observes; it tells you
-          WHEN to add weight, from your own performance and recovery. */}
-      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
-        Havyu watches how you train and how you recover, connects the two, and tells you
-        when to up the weight, based on your own performance and recovery.
-      </p>
-      <div class="mt-9">
-        <StoreButtons variant="onDark" appStoreUrl={HAVYU_LINKS.appStore} />
+    <div class="pt-14 pb-20 md:pt-20 md:pb-24">
+      {/* ✅ [FEATURE]: two columns from md up — copy left, the product loop right. */}
+      <div class="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
+        <div>
+          <p class="text-base font-bold text-mint">AI weightlifting and recovery coach</p>
+          <h1
+            class="mt-4 max-w-4xl font-display text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl"
+          >
+            Havyu connects the dots.<br class="hidden sm:block" /> You lift with absolute certainty.
+          </h1>
+          {/* ✅ [FIX]: reworded (owner, Oct 2026) — was "…tells you what to do next — so
+              you walk in knowing exactly what to lift". Havyu observes; it tells you
+              WHEN to add weight, from your own performance and recovery. */}
+          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">
+            Havyu watches how you train and how you recover, connects the two, and tells you
+            when to up the weight, based on your own performance and recovery.
+          </p>
+          <div class="mt-9">
+            <StoreButtons variant="onDark" appStoreUrl={HAVYU_LINKS.appStore} />
+          </div>
+        </div>
+
+        {/* ✅ [FEATURE]: the page's one motion moment — a Remotion render (video/),
+            not a runtime player: zero JS cost, poster first, muted, inline.
+            Reduced motion: never autoplays (script below) — the poster stands in. */}
+        <figure class="mx-auto w-full max-w-[460px] md:max-w-none">
+          <video
+            data-hero-loop
+            class="aspect-[9/8] w-full rounded-3xl bg-cream object-cover shadow-lg"
+            width="720"
+            height="640"
+            poster="/hero/hero-poster.webp"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Havyu in use: the Have you check-in deck reaches a perfect day, then the coach says bench press is ready to go up."
+          >
+            <source src="/hero/hero-loop.mp4" type="video/mp4" />
+          </video>
+        </figure>
       </div>
 
       {/* In-page jump links (dwell time). ✅ [FIX]: dropped the "EXPLORE" caps label. */}
@@ -48,3 +73,16 @@ import { HAVYU_LINKS } from '../data/author';
     </div>
   </div>
 </header>
+
+<script>
+  // ✅ [FEATURE]: play the hero loop only when motion is welcome and it's on screen.
+  const v = document.querySelector<HTMLVideoElement>('[data-hero-loop]');
+  if (v) {
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !calm.matches) v.play().catch(() => {});
+      else v.pause();
+    });
+    io.observe(v);
+  }
+</script>

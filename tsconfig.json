@@ -5,7 +5,8 @@
     "**/*"
   ],
   "exclude": [
-    "dist"
+    "dist",
+    "video"
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
