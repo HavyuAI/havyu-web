@@ -58,16 +58,8 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { year: 'numeric', month:
             href={`/blog/${p.id}`}
             class="group flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-card transition hover:-translate-y-1"
           >
-            {p.data.heroImage && (
-              <img
-                src={p.data.heroImage}
-                alt={p.data.heroImageAlt ?? ''}
-                width="1200"
-                height="675"
-                loading="lazy"
-                class="aspect-[16/9] w-full object-cover"
-              />
-            )}
+            {/* ✅ [FIX]: no card image — blog heroes are generated title cards, so the
+                image would repeat the title right below it. They still serve og:image. */}
             <div class="flex flex-1 flex-col p-6">
               <p class="text-sm font-bold text-chestnut">{p.data.category}</p>
               <h2 class="mt-2 font-display text-xl font-extrabold leading-snug text-espresso transition group-hover:text-forest">
