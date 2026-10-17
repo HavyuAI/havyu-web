@@ -6,16 +6,21 @@ interface Props {
   variant?: 'onLight' | 'onDark';
   appStoreUrl: string;
   playStoreUrl?: string;
+  /** ✅ [FEATURE]: show Google Play first (Android-led blog articles). */
+  playFirst?: boolean;
 }
 const {
   variant = 'onLight',
   appStoreUrl,
   // ✅ [FEATURE]: Google Play now LIVE
   playStoreUrl = 'https://play.google.com/store/apps/details?id=com.havyu.app',
+  playFirst = false,
 } = Astro.props;
 
 // Both badges share the same filled style so they read as a matched pair.
 const badgeClass = variant === 'onDark' ? 'bg-white text-forest' : 'bg-espresso text-white';
+// ✅ [FEATURE]: CSS order only — markup order (and every existing caller) unchanged.
+const playOrder = playFirst ? 'order-first' : '';
 ---
 
 <div class="flex flex-wrap items-center gap-3">
@@ -42,7 +47,7 @@ const badgeClass = variant === 'onDark' ? 'bg-white text-forest' : 'bg-espresso 
     href={playStoreUrl}
     target="_blank"
     rel="noopener"
-    class={`inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-card transition hover:-translate-y-0.5 ${badgeClass}`}
+    class={`inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 shadow-card transition hover:-translate-y-0.5 ${badgeClass} ${playOrder}`}
   >
     <svg viewBox="0 0 48 48" aria-hidden="true" class="h-6 w-6">
       <polygon points="12,8 15,24 12,40" fill="#00A1FF"></polygon>

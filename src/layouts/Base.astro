@@ -29,7 +29,7 @@ const {
   description,
   canonicalPath = Astro.url.pathname,
   ogImage = '/og-image.png',
-  ogImageAlt = 'Havyu AI — The AI Coach for Lifting Weights', // ✅ [FIX]: locked tagline
+  ogImageAlt = 'Havyu — AI weightlifting and recovery coach', // ✅ [FIX]: new descriptor (Oct 2026)
   ogType = 'website', // ✅ [FIX]: guides pass 'article'
   schema = [],
 } = Astro.props;
@@ -63,7 +63,7 @@ const ogImageUrl = new URL(ogImage, site).href;
 
     {/* ✅ [FEATURE]: Open Graph (rich unfurls in social + AI link previews) */}
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content="Havyu AI" />
+    <meta property="og:site_name" content="Havyu" /> {/* ✅ [FIX]: brand renamed (dropped "AI") */}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />

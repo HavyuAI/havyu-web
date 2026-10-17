@@ -1,0 +1,90 @@
+---
+// ✅ [FEATURE]: Blog hub — comparisons, alternatives and product articles.
+// Goes at: src/pages/blog/index.astro
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { getCollection } from 'astro:content';
+
+const all = await getCollection('blog', ({ data }) => !data.draft);
+// Newest (by last update) first.
+const posts = all.sort(
+  (a, b) =>
+    (b.data.updatedDate ?? b.data.pubDate).valueOf() - (a.data.updatedDate ?? a.data.pubDate).valueOf(),
+);
+
+const title = 'Blog — Havyu | AI lifting coaches, compared and explained';
+const description =
+  'Honest comparisons of AI workout apps, Android alternatives, and how Havyu — the AI weightlifting and recovery coach — reads your training and recovery.';
+
+const site = Astro.site ?? new URL('https://havyu.org');
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: posts.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: new URL(`/blog/${p.id}`, site).href,
+    name: p.data.displayTitle ?? p.data.title,
+  })),
+};
+
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<Base title={title} description={description} schema={posts.length ? [itemListSchema] : []}>
+  {/* An empty hub is thin content — keep it out of the index until posts exist. */}
+  {posts.length === 0 && <meta slot="head" name="robots" content="noindex, follow" />}
+  <SiteHeader />
+  <header class="bg-forest-deep">
+    <div class="mx-auto max-w-5xl px-6 py-16 md:py-20">
+      <p class="text-xs font-bold uppercase tracking-[0.22em] text-white/60">Blog</p>
+      <h1 class="mt-3 max-w-2xl font-display text-4xl font-black leading-tight tracking-tight text-white md:text-5xl">
+        The straight answers.
+      </h1>
+      <p class="mt-4 max-w-xl leading-relaxed text-white/65">
+        AI lifting coaches compared, the best options on Android, and how Havyu turns your
+        training and recovery into insight. For the science, see the
+        <a href="/guides" class="font-semibold text-white underline underline-offset-2">guides</a>.
+      </p>
+    </div>
+  </header>
+
+  <section class="mx-auto max-w-5xl px-6 py-14 md:py-20">
+    {posts.length === 0 ? (
+      <p class="text-espresso/60">New articles are on the way.</p>
+    ) : (
+      <div class="grid gap-6 md:grid-cols-2">
+        {posts.map((p) => (
+          <a
+            href={`/blog/${p.id}`}
+            class="group flex flex-col overflow-hidden rounded-3xl border border-border bg-surface shadow-card transition hover:-translate-y-1"
+          >
+            {p.data.heroImage && (
+              <img
+                src={p.data.heroImage}
+                alt={p.data.heroImageAlt ?? ''}
+                width="1200"
+                height="675"
+                loading="lazy"
+                class="aspect-[16/9] w-full object-cover"
+              />
+            )}
+            <div class="flex flex-1 flex-col p-6">
+              <p class="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-chestnut">{p.data.category}</p>
+              <h2 class="mt-2 font-display text-xl font-extrabold leading-snug text-espresso transition group-hover:text-forest">
+                {p.data.displayTitle ?? p.data.title}
+              </h2>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-espresso/65">{p.data.description}</p>
+              <div class="mt-4 flex items-center justify-between text-sm">
+                <span class="font-bold text-forest">Read →</span>
+                <time class="text-espresso/45" datetime={(p.data.updatedDate ?? p.data.pubDate).toISOString()}>
+                  {fmt(p.data.updatedDate ?? p.data.pubDate)}
+                </time>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </section>
+</Base>

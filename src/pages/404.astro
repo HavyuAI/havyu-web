@@ -3,8 +3,8 @@
 // Goes at: src/pages/404.astro
 import Base from '../layouts/Base.astro';
 
-const title = 'Page not found — Havyu AI';
-const description = "That page doesn't exist. Head back to Havyu — the AI coach for lifting weights.";
+const title = 'Page not found — Havyu'; // ✅ [FIX]: brand renamed
+const description = "That page doesn't exist. Head back to Havyu — the AI weightlifting and recovery coach.";
 ---
 
 <Base title={title} description={description} canonicalPath="/404">
@@ -12,7 +12,7 @@ const description = "That page doesn't exist. Head back to Havyu — the AI coac
     <div class="relative z-10 mx-auto max-w-lg">
       <a href="/" class="inline-flex items-center gap-2.5">
         <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" class="h-10 w-auto" />
-        <span class="font-display text-lg font-bold text-white">Havyu AI</span>
+        <span class="font-display text-lg font-bold text-white">Havyu</span>
       </a>
       <p class="mt-10 text-xs font-bold uppercase tracking-[0.22em] text-ai-bright">Error 404</p>
       <h1 class="mt-3 font-display text-4xl font-black leading-tight tracking-tight text-white md:text-5xl">

@@ -13,9 +13,11 @@ import { faqSchema } from '../data/faqs';
 import { AUTHOR, HAVYU_LINKS, personId, personSchema } from '../data/author';
 
 const origin = (Astro.site ?? new URL('https://havyu.org')).origin;
+// ✅ [FEATURE]: Google Play listing (same URL StoreButtons uses).
+const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.havyu.app';
 // ✅ [FEATURE]: link Havyu's brand channels + founder onto the Organization entity
 const organization = organizationSchema(origin);
-organization.sameAs = [HAVYU_LINKS.appStore, HAVYU_LINKS.tiktok, HAVYU_LINKS.github];
+organization.sameAs = [HAVYU_LINKS.appStore, GOOGLE_PLAY_URL, HAVYU_LINKS.tiktok, HAVYU_LINKS.github]; // ✅ [FIX]: Google Play added (entity consistency)
 organization.founder = { '@type': 'Person', '@id': personId(origin), name: AUTHOR.name };
 
 const schema = [
@@ -29,9 +31,10 @@ const schema = [
 // ✅ [FIX]: locked tagline (11 July 2026) — was "Havyu AI · Smart Lifting —
 // The AI coach for lifting and lifestyle" (misused the training pillar's
 // name as the brand slogan, and buried the Coach positioning).
-const title = 'Havyu AI — The AI Coach for Lifting Weights';
+// ✅ [FIX]: new descriptor (Oct 2026) — "Havyu: AI weightlifting and recovery coach".
+const title = 'Havyu — AI weightlifting and recovery coach';
 const description =
-  'Havyu is the AI Coach for Lifting Weights. It observes your training and your recovery — Smart Lifting and Habits — as two inputs to one connected coaching system, surfacing the patterns behind your progress.';
+  'Havyu is an AI weightlifting and recovery coach. It observes your training and your recovery — Smart Lifting and Habits — as two inputs to one connected coaching system, surfacing the patterns behind your progress.';
 ---
 
 <Base title={title} description={description} schema={schema}>
@@ -312,7 +315,7 @@ const description =
             {/* TODO: copy adaptive-icon.png → public/havyu-mark.png */}
             <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" loading="lazy" class="h-9 w-auto" />
             <span class="flex flex-col leading-none">
-              <span class="font-display text-lg font-bold text-white">Havyu AI</span>
+              <span class="font-display text-lg font-bold text-white">Havyu</span>{/* ✅ [FIX]: brand renamed */}
               {/* ✅ [FIX]: was "Smart Lifting" — matches the same fix in Hero.astro's lockup. */}
               <span class="mt-1 text-[0.6rem] font-bold uppercase tracking-[0.22em] text-white/55">
                 AI Coach
@@ -321,6 +324,7 @@ const description =
           </div>
           <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/70">
             <a href={HAVYU_LINKS.appStore} target="_blank" rel="me noopener" class="transition hover:text-white">App Store</a>
+            <a href={GOOGLE_PLAY_URL} target="_blank" rel="me noopener" class="transition hover:text-white">Google Play</a>{/* ✅ [FEATURE]: Android listing in footer */}
             <a href={HAVYU_LINKS.tiktok} target="_blank" rel="me noopener" class="transition hover:text-white">TikTok</a>
             <a href={HAVYU_LINKS.github} target="_blank" rel="me noopener" class="transition hover:text-white">GitHub</a>
           </div>
@@ -329,6 +333,7 @@ const description =
           {/* ✅ [FEATURE]: footer nav previously had no path back to the content
               cluster — a visitor landing anywhere but a guide had no way to find it. */}
           <a href="/guides" class="transition hover:text-white">Guides</a>
+          <a href="/blog" class="transition hover:text-white">Blog</a>{/* ✅ [FEATURE]: crawl path to /blog */}
           <a href="/privacy" class="transition hover:text-white">Privacy</a>
           <a href="/terms" class="transition hover:text-white">Terms</a>
         </nav>
@@ -339,7 +344,7 @@ const description =
         <p class="text-sm text-white/60">
           Built by <a href={AUTHOR.instagram} target="_blank" rel="author me noopener" class="font-semibold text-white/80 transition hover:text-white">{AUTHOR.name}</a> — {AUTHOR.tagline}
         </p>
-        <p class="text-xs text-white/50">© 2026 Havyu AI</p>
+        <p class="text-xs text-white/50">© 2026 Havyu</p>
       </div>
     </div>
   </footer>

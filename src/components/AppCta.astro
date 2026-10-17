@@ -1,0 +1,65 @@
+---
+// ✅ [FEATURE]: AppCta — the Havyu install card, shared by guides and blog.
+// Goes at: src/components/AppCta.astro
+// `full` = closing sign-off card (was inline in GuideLayout).
+// `compact` = slim card under an article's short answer (SensAI-style top CTA).
+import StoreButtons from './StoreButtons.astro';
+import { HAVYU_LINKS } from '../data/author';
+
+interface Props {
+  variant?: 'full' | 'compact';
+  /** Show Google Play first — for Android-led articles. */
+  playFirst?: boolean;
+}
+const { variant = 'full', playFirst = false } = Astro.props;
+---
+
+{variant === 'compact' ? (
+  <aside class="mt-8 flex flex-col gap-4 rounded-3xl border border-border bg-surface p-5 shadow-card sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex items-center gap-3">
+      <img
+        src="/apple-touch-icon.png"
+        alt=""
+        aria-hidden="true"
+        width="44"
+        height="44"
+        class="h-11 w-11 shrink-0 rounded-xl"
+      />
+      <div class="min-w-0 leading-tight">
+        <p class="font-display font-extrabold text-espresso">Havyu</p>
+        <p class="text-sm text-espresso/60">AI weightlifting and recovery coach. Free on iOS and Android.</p>
+      </div>
+    </div>
+    <StoreButtons variant="onLight" appStoreUrl={HAVYU_LINKS.appStore} playFirst={playFirst} />
+  </aside>
+) : (
+  <aside class="mt-14 rounded-3xl border-2 border-ai/20 bg-ai/5 p-8">
+    <div class="flex items-center gap-4">
+      <img
+        src="/apple-touch-icon.png"
+        alt="Havyu app icon"
+        width="56"
+        height="56"
+        loading="lazy"
+        class="h-14 w-14 shrink-0 rounded-2xl shadow-card"
+      />
+      <div class="min-w-0">
+        {/* ✅ [FIX]: brand line is now "Train. Recover. Overload." (was "…Progress.") */}
+        <p class="text-xs font-bold uppercase tracking-[0.16em] text-forest">Train. Recover. Overload.</p>
+        <p class="font-display text-lg font-extrabold leading-tight text-espresso">Havyu</p>
+      </div>
+    </div>
+    <p class="mt-5 text-lg leading-relaxed text-espresso/80">
+      Havyu watches both sides of your progress — your training and your recovery — and
+      connects the dots, so you can see the patterns behind your strength.
+    </p>
+    <div class="mt-6">
+      <StoreButtons variant="onLight" appStoreUrl={HAVYU_LINKS.appStore} playFirst={playFirst} />
+    </div>
+    <a href="/" class="mt-4 inline-block text-sm font-semibold text-forest transition hover:text-forest-deep">
+      How Havyu works →
+    </a>
+    {/* ✅ [FIX]: new descriptor — "AI weightlifting and recovery coach" */}
+    <p class="mt-4 text-sm text-espresso/50">— Havyu, AI weightlifting and recovery coach.</p>
+  </aside>
+)}

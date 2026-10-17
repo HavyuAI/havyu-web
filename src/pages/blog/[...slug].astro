@@ -1,0 +1,30 @@
+---
+// ✅ [FEATURE]: Blog article route — renders each Markdown post via ArticleLayout.
+// Goes at: src/pages/blog/[...slug].astro
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((entry) => ({
+    params: { slug: entry.id }, // glob loader: id = slugified filename
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Word count from the raw Markdown body (links/markup stripped) → reading time.
+const plain = (entry.body ?? '')
+  .replace(/\[\^?[^\]]*\]\([^)]*\)/g, ' ')
+  .replace(/[#>*_`|[\]()-]/g, ' ');
+const wordCount = plain.split(/\s+/).filter(Boolean).length;
+const readingMinutes = Math.max(1, Math.round(wordCount / 230));
+// Android-led articles put Google Play first.
+const playFirst = entry.data.tags.some((t) => t.toLowerCase() === 'android');
+---
+
+<ArticleLayout {...entry.data} slug={entry.id} wordCount={wordCount} readingMinutes={readingMinutes} playFirst={playFirst}>
+  <Content />
+</ArticleLayout>

@@ -29,4 +29,38 @@ const guides = defineCollection({
   }),
 });
 
-export const collections = { guides };
+// ✅ [FEATURE]: Blog collection — comparison, alternatives and product articles
+// built for answer engines (SensAI-style template: short answer, dated facts,
+// footnoted sources). Kept separate from guides so the evidence-based guides
+// cluster stays clean and each hub has its own schema and breadcrumbs.
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  schema: z.object({
+    // SEO <title> — keyword-led, e.g. "Havyu vs SensAI (2026)".
+    title: z.string(),
+    // On-page H1 if it should differ from the SEO title.
+    displayTitle: z.string().optional(),
+    // Meta description + card blurb on /blog.
+    description: z.string(),
+    // The bold answer box at the top — the line answer engines lift verbatim.
+    shortAnswer: z.string(),
+    // Section label shown above the H1 and used as Article.articleSection.
+    category: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    // When competitor prices/features in the article were last checked.
+    factsChecked: z.coerce.date().optional(),
+    // Hero image in public/blog/ (1200×675 .webp). Optional — falls back to og-image.
+    heroImage: z.string().optional(),
+    heroImageAlt: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+    // Drives the visible FAQ block AND the FAQPage JSON-LD.
+    faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+    // Related blog slugs and related guide slugs ("Keep reading").
+    related: z.array(z.string()).default([]),
+    relatedGuides: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { guides, blog };

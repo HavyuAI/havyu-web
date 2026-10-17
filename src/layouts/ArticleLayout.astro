@@ -1,0 +1,244 @@
+---
+// ✅ [FEATURE]: ArticleLayout — /blog article wrapper (SEO + AEO).
+// Goes at: src/layouts/ArticleLayout.astro
+// Same visual system as GuideLayout, plus the answer-engine template:
+//   short-answer box → compact install card → body (tables + footnotes) →
+//   "facts checked" line → FAQ → keep reading → closing CTA.
+// Schema: BlogPosting + Person + BreadcrumbList (+ FAQPage when faqs exist).
+import Base from './Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import AppCta from '../components/AppCta.astro';
+import '../styles/prose.css';
+import { AUTHOR, personId, personSchema } from '../data/author';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  title: string;
+  displayTitle?: string;
+  description: string;
+  shortAnswer: string;
+  category: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  factsChecked?: Date;
+  heroImage?: string;
+  heroImageAlt?: string;
+  tags?: string[];
+  faqs?: { q: string; a: string }[];
+  related?: string[];
+  relatedGuides?: string[];
+  slug: string;
+  readingMinutes: number;
+  wordCount: number;
+  /** Show Google Play first on Android-led articles. */
+  playFirst?: boolean;
+}
+
+const {
+  title,
+  displayTitle,
+  description,
+  shortAnswer,
+  category,
+  pubDate,
+  updatedDate,
+  factsChecked,
+  heroImage,
+  heroImageAlt,
+  tags = [],
+  faqs = [],
+  related = [],
+  relatedGuides = [],
+  slug,
+  readingMinutes,
+  wordCount,
+  playFirst = false,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://havyu.org');
+const origin = site.origin;
+const canonicalPath = `/blog/${slug}`;
+const url = new URL(canonicalPath, site).href;
+
+// "Keep reading" — blog posts first, then guides, in the order given.
+// Unknown slugs are skipped silently (self-heals against typos).
+const relatedPosts = related.length
+  ? (await getCollection('blog', ({ id, data }) => !data.draft && related.includes(id)))
+      .sort((a, b) => related.indexOf(a.id) - related.indexOf(b.id))
+      .map((p) => ({ href: `/blog/${p.id}`, label: p.data.displayTitle ?? p.data.title, image: p.data.heroImage, kicker: p.data.category }))
+  : [];
+const relatedGuideCards = relatedGuides.length
+  ? (await getCollection('guides', ({ id, data }) => !data.draft && relatedGuides.includes(id)))
+      .sort((a, b) => relatedGuides.indexOf(a.id) - relatedGuides.indexOf(b.id))
+      .map((g) => ({ href: `/guides/${g.id}`, label: g.data.displayTitle ?? g.data.title, image: g.data.heroImage, kicker: 'Guide' }))
+  : [];
+const keepReading = [...relatedPosts, ...relatedGuideCards].slice(0, 6);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+const published = pubDate.toISOString();
+const modified = (updatedDate ?? pubDate).toISOString();
+const dateLabel = fmt(updatedDate ?? pubDate);
+
+const h1 = displayTitle ?? title;
+
+const articleSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  abstract: shortAnswer,
+  articleSection: category,
+  keywords: tags.join(', '),
+  wordCount,
+  datePublished: published,
+  dateModified: modified,
+  ...(heroImage ? { image: new URL(heroImage, site).href } : { image: new URL('/og-image.png', site).href }),
+  author: { '@type': 'Person', '@id': personId(origin), name: AUTHOR.name, url: origin },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Havyu',
+    url: origin,
+    logo: { '@type': 'ImageObject', url: new URL('/apple-touch-icon.png', site).href },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  url,
+};
+
+const faqSchema = faqs.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: origin },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog', site).href },
+    { '@type': 'ListItem', position: 3, name: h1, item: url },
+  ],
+};
+
+const schema = [articleSchema, personSchema(origin), breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
+
+const ogImage = heroImage ?? '/og-image.png';
+const ogAlt = heroImageAlt ?? 'Havyu — AI weightlifting and recovery coach';
+---
+
+<Base
+  title={`${title} — Havyu`}
+  description={description}
+  canonicalPath={canonicalPath}
+  ogImage={ogImage}
+  ogImageAlt={ogAlt}
+  ogType="article"
+  schema={schema}
+>
+  <Fragment slot="head">
+    <meta property="article:published_time" content={published} />
+    <meta property="article:modified_time" content={modified} />
+    <meta property="article:section" content={category} />
+    <meta property="article:author" content={AUTHOR.name} />
+  </Fragment>
+
+  <SiteHeader />
+  <article class="mx-auto max-w-3xl px-6 py-12 md:py-16">
+    <a href="/blog" class="text-sm font-semibold text-forest transition hover:text-forest-deep">
+      ← All articles
+    </a>
+
+    <p class="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-chestnut">{category}</p>
+
+    <h1 class="mt-3 font-display text-3xl font-black leading-tight tracking-tight text-espresso md:text-4xl">
+      {h1}
+    </h1>
+    <p class="mt-4 text-lg leading-relaxed text-espresso/70">{description}</p>
+
+    <div class="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-espresso/55">
+      <span class="font-semibold text-espresso/75">{AUTHOR.name}</span>
+      <span aria-hidden="true">·</span>
+      <span>Developer of Havyu</span>
+      <span aria-hidden="true">·</span>
+      <time datetime={modified}>{updatedDate ? `Updated ${dateLabel}` : dateLabel}</time>
+      <span aria-hidden="true">·</span>
+      <span>{readingMinutes} min read</span>
+    </div>
+
+    {heroImage && (
+      <img
+        src={heroImage}
+        alt={heroImageAlt ?? ''}
+        width="1200"
+        height="675"
+        class="mt-8 aspect-[16/9] w-full rounded-3xl object-cover shadow-card"
+      />
+    )}
+
+    {/* The answer engines lift: one bold, self-contained paragraph. */}
+    <div class="mt-8 rounded-3xl border-l-4 border-forest bg-surface p-6 shadow-card">
+      <p class="text-xs font-bold uppercase tracking-[0.16em] text-forest">Short answer</p>
+      <p class="mt-2 text-lg font-semibold leading-relaxed text-espresso">{shortAnswer}</p>
+    </div>
+
+    <AppCta variant="compact" playFirst={playFirst} />
+
+    <div class="guide-prose mt-10">
+      <slot />
+    </div>
+
+    {factsChecked && (
+      <p class="mt-10 text-sm text-espresso/50">
+        Prices and features checked on <time datetime={factsChecked.toISOString()}>{fmt(factsChecked)}</time>.
+        App stores change often — confirm current pricing in the store before you subscribe.
+      </p>
+    )}
+
+    {faqs.length > 0 && (
+      <section class="mt-14">
+        <h2 class="font-display text-2xl font-black tracking-tight text-espresso">Common questions</h2>
+        <div class="mt-5 divide-y divide-border overflow-hidden rounded-3xl border border-border bg-surface">
+          {faqs.map((f) => (
+            <details class="group p-5">
+              <summary class="cursor-pointer list-none font-display text-lg font-bold text-espresso [&::-webkit-details-marker]:hidden">
+                {f.q}
+              </summary>
+              <p class="mt-2 leading-relaxed text-espresso/70">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {keepReading.length > 0 && (
+      <section class="mt-14">
+        <h2 class="font-display text-2xl font-black tracking-tight text-espresso">Keep reading</h2>
+        <div class="mt-5 grid gap-4 sm:grid-cols-3">
+          {keepReading.map((r) => (
+            <a
+              href={r.href}
+              class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-card transition hover:-translate-y-1"
+            >
+              {r.image && (
+                <img src={r.image} alt="" width="1200" height="675" loading="lazy" class="aspect-[16/9] w-full object-cover" />
+              )}
+              <div class="p-4">
+                <p class="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-chestnut">{r.kicker}</p>
+                <p class="mt-1 text-sm font-bold leading-snug text-espresso transition group-hover:text-forest">{r.label}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <AppCta playFirst={playFirst} />
+  </article>
+</Base>

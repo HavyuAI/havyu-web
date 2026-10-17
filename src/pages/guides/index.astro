@@ -14,7 +14,7 @@ const guides = all.sort((a, b) => {
 
 const title = 'Guides — Havyu | Lifting, recovery and the science of progress';
 const description =
-  'Evidence-based guides on lifting, recovery and habits — how sleep, protein and consistency shape your strength, from the team behind the Havyu AI coach.';
+  'Evidence-based guides on lifting, recovery and habits — how sleep, protein and consistency shape your strength, from the team behind Havyu, the AI weightlifting and recovery coach.'; // ✅ [FIX]: new descriptor
 
 // ✅ [FEATURE]: ItemList schema (Batch 5) — helps AI answer engines and Google
 // understand the guides hub as a structured collection, not just a link list.
@@ -37,7 +37,7 @@ const itemListSchema = {
     <div class="mx-auto max-w-5xl px-6 py-16 md:py-20">
       <a href="/" class="inline-flex items-center gap-2.5">
         <img src="/havyu-mark.png" alt="" aria-hidden="true" width="360" height="250" class="h-9 w-auto" />
-        <span class="font-display text-lg font-bold text-white">Havyu AI</span>
+        <span class="font-display text-lg font-bold text-white">Havyu</span>{/* ✅ [FIX]: brand renamed */}
       </a>
       {/* ✅ [FIX]: was text-ai-bright — this is a section kicker, not AI-generated
           content. Matches the dark-bg secondary-kicker convention already used
@@ -48,7 +48,7 @@ const itemListSchema = {
       </h1>
       <p class="mt-4 max-w-xl leading-relaxed text-white/65">
         Lifting and recovery, explained. Evidence-based guides on how your training and your
-        habits connect — from the team behind the Havyu AI coach.
+        habits connect — from the team behind the Havyu coach.
       </p>
     </div>
   </header>
