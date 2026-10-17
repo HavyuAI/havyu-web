@@ -21,6 +21,12 @@
 * [How important is training consistency](https://havyu.org/guides/how-important-is-training-consistency)
 * [How habits affect your lifting](https://havyu.org/guides/how-habits-affect-your-lifting)
 
+## Blog
+
+* [Havyu vs SensAI (2026)](https://havyu.org/blog/havyu-vs-sensai)
+* [SensAI alternatives for Android (2026)](https://havyu.org/blog/sensai-alternatives-android)
+* [Best AI workout apps for Android (2026)](https://havyu.org/blog/best-ai-workout-apps-android)
+
 ## What Havyu does
 
 * **Training (Smart Lifting)** - fast live set logging, supersets, routines, a multi-week scheduler, an exercise library with demonstrations and muscle maps, kg or lbs, and voice logging.

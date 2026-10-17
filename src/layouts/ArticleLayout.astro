@@ -168,15 +168,9 @@ const ogAlt = heroImageAlt ?? 'Havyu — AI weightlifting and recovery coach';
       <time datetime={modified}>{updatedDate ? `Updated ${dateLabel}` : dateLabel}</time>, {readingMinutes} min read.
     </p>
 
-    {heroImage && (
-      <img
-        src={heroImage}
-        alt={heroImageAlt ?? ''}
-        width="1200"
-        height="675"
-        class="mt-8 aspect-[16/9] w-full rounded-3xl object-cover shadow-card"
-      />
-    )}
+    {/* ✅ [FIX]: the hero image is a generated title card (Remotion), so it is NOT
+        rendered in the article — it would repeat the H1 directly above. It still
+        drives og:image, BlogPosting.image and the /blog hub cards. */}
 
     {/* The answer engines lift: one bold, self-contained paragraph. */}
     <div class="mt-8 rounded-3xl border-l-4 border-leaf bg-surface p-6 shadow-card">
