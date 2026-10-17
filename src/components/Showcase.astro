@@ -6,17 +6,18 @@
 // ✅ [FIX] (Batch E): kicker tone is the PILLAR colour — 'train' = Chestnut,
 // 'recover' = Deep Leaf. The purple 'ai' tone is retired (AI wears the pillar colour).
 // ✅ [FEATURE]: v2 screenshots (Oct 2026, app v2.0.0) — Training first, then
-// Recovery. Kicker tone = pillar: 'train' → Chestnut, 'recover' → Deep Leaf.
+// Recovery, led by the highest-value features: live overload coaching, then
+// Ask the coach (owner, Oct 2026). Kicker tone = pillar: 'train' → Chestnut, 'recover' → Deep Leaf.
 const S = { w: 600, h: 1336 };
 const shots = [
-  { src: '/screenshots/v2-coaching-insights.webp', ...S, tone: 'train', kicker: 'Coaching insights', caption: 'Patterns in your own lifts, explained in plain language.' },
-  { src: '/screenshots/v2-progress.webp', ...S, tone: 'train', kicker: 'Progress', caption: 'Your North Star lift, this week’s volume and the coach’s read on your block.' },
-  { src: '/screenshots/v2-todays-focus.webp', ...S, tone: 'train', kicker: 'Today’s focus', caption: 'Before you train: what has stalled, and how last night should shape today.' },
-  { src: '/screenshots/v2-ask-coach-training.webp', ...S, tone: 'train', kicker: 'Ask the coach', caption: 'Questions about your training, answered from your sessions.' },
   { src: '/screenshots/v2-live-overload.webp', ...S, tone: 'train', kicker: 'Live overload coaching', caption: 'Mid-workout: whether to add weight, hold, or ease back.' },
+  { src: '/screenshots/v2-ask-coach-training.webp', ...S, tone: 'train', kicker: 'Ask the coach', caption: 'Questions about your training, answered from your sessions.' },
+  { src: '/screenshots/v2-todays-focus.webp', ...S, tone: 'train', kicker: 'Today’s focus', caption: 'Before you train: what has stalled, and how last night should shape today.' },
+  { src: '/screenshots/v2-coaching-insights.webp', ...S, tone: 'train', kicker: 'Coaching insights', caption: 'Patterns in your own lifts, explained in plain language.' },
   { src: '/screenshots/v2-daily-have-you.webp', ...S, tone: 'recover', kicker: 'The “Have you…?” check-in', caption: 'Flick through your recovery habits in seconds.' },
-  { src: '/screenshots/v2-grounded-in-science.webp', ...S, tone: 'recover', kicker: 'Grounded in science', caption: 'Your targets checked against the research, with the study named.' },
   { src: '/screenshots/v2-ask-coach-recovery.webp', ...S, tone: 'recover', kicker: 'Ask the recovery coach', caption: 'How your sleep, protein and water line up with your lifting.' },
+  { src: '/screenshots/v2-grounded-in-science.webp', ...S, tone: 'recover', kicker: 'Grounded in science', caption: 'Your targets checked against the research, with the study named.' },
+  { src: '/screenshots/v2-progress.webp', ...S, tone: 'train', kicker: 'Progress', caption: 'Your North Star lift, this week’s volume and the coach’s read on your block.' },
 ];
 ---
 
