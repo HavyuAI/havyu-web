@@ -5,71 +5,18 @@
 // Carousel = native CSS scroll-snap (touch swipe) + arrow buttons (desktop). No deps.
 // ✅ [FIX] (Batch E): kicker tone is the PILLAR colour — 'train' = Chestnut,
 // 'recover' = Deep Leaf. The purple 'ai' tone is retired (AI wears the pillar colour).
+// ✅ [FEATURE]: v2 screenshots (Oct 2026, app v2.0.0) — Training first, then
+// Recovery. Kicker tone = pillar: 'train' → Chestnut, 'recover' → Deep Leaf.
+const S = { w: 600, h: 1336 };
 const shots = [
-  {
-    src: '/screenshots/screenshot-genie.webp',
-    w: 600,
-    h: 1269,
-    kicker: 'Tap-to-summon coach',
-    tone: 'train',
-    caption: 'Your coach, one tap away — mid-set.',
-  },
-  {
-    src: '/screenshots/screenshot-coach.webp',
-    w: 600,
-    h: 1269,
-    kicker: 'AI Coach',
-    tone: 'train',
-    caption: 'Weekly read-outs and pattern insights, in plain language.',
-  },
-  {
-    src: '/screenshots/screenshot-routine.webp',
-    w: 600,
-    h: 1234,
-    kicker: 'AI Routine Builder',
-    tone: 'train',
-    caption: 'Spin up a hyper-tailored routine on a single screen.',
-  },
-  {
-    src: '/screenshots/screenshot-live-logging.webp',
-    w: 600,
-    h: 1261,
-    kicker: 'Live session logging',
-    tone: 'recover',
-    caption: 'Log a working set in two taps, mid-workout.',
-  },
-  {
-    src: '/screenshots/screenshot-voice-logging.webp',
-    w: 600,
-    h: 1261,
-    kicker: 'Voice logging',
-    tone: 'train',
-    caption: 'Call out your set — Havyu logs it hands-free.',
-  },
-  {
-    src: '/screenshots/screenshot-habits.webp',
-    w: 600,
-    h: 1269,
-    kicker: 'The “Have You…?” deck',
-    tone: 'recover',
-    caption: 'Flick through recovery habits in seconds.',
-  },
-  {
-    src: '/screenshots/screenshot-weekly-overview.webp',
-    w: 600,
-    h: 1261,
-    kicker: 'Weekly overview',
-    tone: 'recover',
-    caption: 'Your week read back — what moved the needle.',
-  },
-  {
-    src: '/screenshots/screenshot-monthly.webp',
-    w: 600,
-    h: 1261,
-    kicker: 'Monthly coverage',
-    tone: 'recover',
-    caption: 'A month of consistency, at a glance.',
-  },
+  { src: '/screenshots/v2-coaching-insights.webp', ...S, tone: 'train', kicker: 'Coaching insights', caption: 'Patterns in your own lifts, explained in plain language.' },
+  { src: '/screenshots/v2-progress.webp', ...S, tone: 'train', kicker: 'Progress', caption: 'Your North Star lift, this week’s volume and the coach’s read on your block.' },
+  { src: '/screenshots/v2-todays-focus.webp', ...S, tone: 'train', kicker: 'Today’s focus', caption: 'Before you train: what has stalled, and how last night should shape today.' },
+  { src: '/screenshots/v2-ask-coach-training.webp', ...S, tone: 'train', kicker: 'Ask the coach', caption: 'Questions about your training, answered from your sessions.' },
+  { src: '/screenshots/v2-live-overload.webp', ...S, tone: 'train', kicker: 'Live overload coaching', caption: 'Mid-workout: whether to add weight, hold, or ease back.' },
+  { src: '/screenshots/v2-daily-have-you.webp', ...S, tone: 'recover', kicker: 'The “Have you…?” check-in', caption: 'Flick through your recovery habits in seconds.' },
+  { src: '/screenshots/v2-grounded-in-science.webp', ...S, tone: 'recover', kicker: 'Grounded in science', caption: 'Your targets checked against the research, with the study named.' },
+  { src: '/screenshots/v2-ask-coach-recovery.webp', ...S, tone: 'recover', kicker: 'Ask the recovery coach', caption: 'How your sleep, protein and water line up with your lifting.' },
 ];
 ---
 
@@ -81,9 +28,8 @@ const shots = [
           See it in action.
         </h2>
         <p class="mt-4 max-w-2xl leading-relaxed text-espresso/70">
-          Real screens from the app: the coach surfaces that read your training, the
-          logging flow built for the gym floor, and your daily, weekly and monthly
-          progress.
+          Real screens from Havyu: the Training coach, live overload calls on the gym
+          floor, and the Recovery check-in that feeds them.
         </p>
       </div>
 
