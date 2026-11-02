@@ -42,7 +42,9 @@ const sections: { h: string; items: string[] }[] = [
     h: 'Coaching behaviour',
     items: [
       'The coach observes and explains the lifter’s own data — strength trends, progression stalls, and how recovery lines up with performance.',
-      'It does not prescribe sets, reps or loads, and does not invent programmes.',
+      // ✅ [FIX]: corrected coach positioning (Oct 2026) — the coach says when to add weight; it still writes no programmes.
+      'It tells the lifter directly when they are ready to add weight, based on their own recent performance and recovery habits.',
+      'It does not write programmes: routines come from the separate AI Routine Builder or are built by hand.',
       'Free tier: an on-device coach using local analysis. Pro: an AI layer (Google Gemini) adds pre-workout briefings, session reviews, weekly reads and curated coach questions.',
     ],
   },

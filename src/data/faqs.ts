@@ -22,11 +22,12 @@ export const faqs: Faq[] = [
   },
   {
     q: 'How is Havyu different from apps like Strong or Fitbod?',
-    a: 'Most apps track either lifting or nutrition. Havyu does both, and its AI links them: it matches each training session against the prior day\u2019s recovery habits to surface concrete correlations between how you live and how you perform. Rather than handing you a generic template, it observes and explains your own data.',
+    a: 'Most apps track either lifting or nutrition. Havyu does both, and its AI links them: it matches each training session against the prior day\u2019s recovery habits to surface concrete correlations between how you live and how you perform. Rather than handing you a generic template, it reads your own data and tells you when you\u2019re ready to go heavier.',
   },
   {
+    // ✅ [FIX]: corrected coach positioning (Oct 2026) — the coach says when to add weight; routines stay with the builder.
     q: 'Does Havyu tell me what exercises, sets and reps to do?',
-    a: 'Havyu\u2019s AI Routine Builder can generate a structured routine around a focus you choose, and you can also build routines manually. Its coaching surfaces, though, are observational — they explain what is happening in your training and why, instead of prescribing exact sets, reps or loads. You stay in control of your program.',
+    a: 'Havyu\u2019s AI Routine Builder can generate a structured routine around a focus you choose, and you can also build routines manually. The coach then tells you when you\u2019re ready to add weight to a lift, based on your recent performance and your recovery habits, and explains why. You stay in control of your program.',
   },
   {
     q: 'How does the AI coaching actually work?',
