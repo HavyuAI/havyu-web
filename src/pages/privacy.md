@@ -6,7 +6,7 @@ description: How Havyu handles your data — on-device workout and habit logs, A
 
 # Privacy Policy for Havyu
 
-**Last Updated:** 10 October 2026
+**Last Updated:** 4 November 2026
 
 ## 1. Who We Are
 Havyu (previously named Havyu AI) is developed and operated by an individual developer based in the United Kingdom, who is the seller named on the Havyu listing in the Apple App Store and Google Play ("we", "us"). Havyu is not operated by a company. We are the data controller for the personal data described in this policy and can be contacted at **havyulabs@gmail.com**.
@@ -58,6 +58,9 @@ We use your microphone only when you choose to log sets by voice. Your speech is
 The resulting text is then turned into structured sets and reps:
 * **Free tier:** entirely on your device.
 * **Pro (including free trial):** the text is sent to our AI provider, Google Gemini, if you have given AI consent (Section 7). If you have not, or the service is unavailable, it is interpreted on your device instead.
+
+### Siri and Shortcuts (iOS)
+So that Siri and the Shortcuts app can answer questions like "Am I ready to go heavier?" and start a workout for you, Havyu gives iOS a short list kept on your device: your routine names, the names of the lifts you train most, a one-sentence readiness read for each of those lifts, and today's coaching read. These are produced on your device; using Siri or Shortcuts with Havyu sends nothing to us or to our AI provider. Your spoken request is handled by Apple under its own privacy policy. If you have set iOS to use a third-party AI assistant, iOS may pass your request and Havyu's answer to that provider under its policy. You can turn this off in iOS Settings → Apps → Havyu → Siri.
 
 ## 7. AI Coaching (Google Gemini)
 Havyu uses Google's Gemini large language model to generate coaching insights. AI features require you to sign in (Section 8) so that we can protect the service from abuse.
